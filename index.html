@@ -1,3595 +1,3304 @@
 <!DOCTYPE html>
-
 <html lang="th">
-
 <head>
-
 <meta charset="UTF-8">
 
 <meta
-
-    name="viewport"
-
-    content="width=device-width, initial-scale=1.0"
-
+  name="viewport"
+  content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
 >
 
+<meta name="theme-color" content="#fff8f3">
 <meta
-
-    name="theme-color"
-
-    content="#fffaf7"
-
->
-
-<meta
-
-    name="description"
-
-    content="บางอย่างที่ผมตั้งใจทำให้คุณ"
-
+  name="description"
+  content="บางอย่างที่ผมตั้งใจทำให้คุณ"
 >
 
 <title>สำหรับคุณ ♡</title>
 
 <style>
-
 /* =========================================================
-
    RESET
-
 ========================================================= */
 
-* {
-
-    box-sizing: border-box;
-
-    margin: 0;
-
-    padding: 0;
-
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
 }
 
-html {
-
-    scroll-behavior: smooth;
-
+html{
+  scroll-behavior:smooth;
 }
 
-body {
-
-    margin: 0;
-
-    font-family:
-
-        -apple-system,
-
-        BlinkMacSystemFont,
-
-        "Segoe UI",
-
-        "Noto Sans Thai",
-
-        sans-serif;
-
-    background: #fffaf7;
-
-    color: #40383b;
-
-    overflow-x: hidden;
-
+body{
+  min-height:100vh;
+  overflow-x:hidden;
+  background:
+    radial-gradient(circle at 20% 10%, rgba(239,208,217,.42), transparent 28%),
+    radial-gradient(circle at 85% 25%, rgba(238,229,244,.55), transparent 30%),
+    radial-gradient(circle at 50% 90%, rgba(244,213,203,.30), transparent 35%),
+    var(--cream);
+  color:var(--text);
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "SF Pro Display",
+    "SF Pro Text",
+    "Segoe UI",
+    "Noto Sans Thai",
+    sans-serif;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
 }
 
-button {
+button{
+  font:inherit;
+}
 
-    font-family: inherit;
+button,
+a{
+  -webkit-tap-highlight-color:transparent;
+}
 
+button{
+  border:0;
+  cursor:pointer;
+}
+
+:root{
+  --cream:#fff8f3;
+  --cream-2:#fff3ee;
+  --white:#ffffff;
+
+  --rose-soft:#f9e8ed;
+  --rose-light:#efd0d9;
+  --rose:#c77c91;
+  --rose-deep:#aa6078;
+
+  --lavender:#eee5f4;
+  --peach:#f4d5cb;
+
+  --text:#463c41;
+  --soft:#74686e;
+  --muted:#a48f97;
+
+  --line:#e8cbd2;
+
+  --shadow:
+    0 18px 55px rgba(124,87,100,.10);
+
+  --shadow-soft:
+    0 10px 35px rgba(124,87,100,.08);
 }
 
 /* =========================================================
-
-   VARIABLES
-
+   BACKGROUND
 ========================================================= */
 
-:root {
+.background-glow{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:-2;
+  overflow:hidden;
+}
 
-    --cream: #fffaf7;
+.glow{
+  position:absolute;
+  border-radius:50%;
+  filter:blur(45px);
+  opacity:.38;
+  animation:drift 12s ease-in-out infinite alternate;
+}
 
-    --white: #ffffff;
+.glow.one{
+  width:180px;
+  height:180px;
+  background:var(--rose-light);
+  top:7%;
+  left:-60px;
+}
 
-    --pink-soft: #fff1f4;
+.glow.two{
+  width:220px;
+  height:220px;
+  background:var(--lavender);
+  right:-90px;
+  top:28%;
+  animation-delay:-4s;
+}
 
-    --pink-light: #f9dfe5;
+.glow.three{
+  width:170px;
+  height:170px;
+  background:var(--peach);
+  left:35%;
+  bottom:-90px;
+  animation-delay:-7s;
+}
 
-    --pink: #d59aaa;
-
-    --pink-dark: #c27d91;
-
-    --text: #40383b;
-
-    --text-soft: #71666b;
-
-    --text-muted: #a58b93;
-
-    --line: #e8c7cf;
-
-    --shadow:
-
-        0 20px 60px rgba(
-
-            80,
-
-            50,
-
-            60,
-
-            0.08
-
-        );
-
+@keyframes drift{
+  from{
+    transform:translate3d(0,0,0) scale(1);
+  }
+  to{
+    transform:translate3d(20px,-18px,0) scale(1.08);
+  }
 }
 
 /* =========================================================
-
-   PAGE PROGRESS
-
+   PROGRESS
 ========================================================= */
 
-.progress {
+.progress-wrap{
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  height:3px;
+  z-index:1000;
+  background:rgba(255,255,255,.42);
+  backdrop-filter:blur(8px);
+}
 
-    position: fixed;
+.progress-bar{
+  width:0%;
+  height:100%;
+  background:linear-gradient(
+    90deg,
+    var(--rose-light),
+    var(--rose),
+    #c9b3d8
+  );
+  transition:width .25s ease;
+}
 
-    top: 0;
+.page-number{
+  position:fixed;
+  top:18px;
+  right:18px;
+  z-index:900;
 
-    left: 0;
+  padding:7px 11px;
+  border:1px solid rgba(232,203,210,.8);
+  border-radius:999px;
 
-    width: 0%;
+  background:rgba(255,250,247,.74);
+  backdrop-filter:blur(14px);
 
-    height: 3px;
+  color:var(--muted);
+  font-size:10px;
+  letter-spacing:.16em;
+  font-weight:700;
 
-    background:
-
-        linear-gradient(
-
-            90deg,
-
-            #c9899d,
-
-            #e5b2bf
-
-        );
-
-    z-index: 9999;
-
-    transition:
-
-        width 0.2s ease;
-
+  box-shadow:0 8px 25px rgba(124,87,100,.07);
 }
 
 /* =========================================================
-
-   PAGE COUNTER
-
+   COMMON
 ========================================================= */
 
-.page-counter {
-
-    position: fixed;
-
-    right: 16px;
-
-    bottom: 16px;
-
-    z-index: 500;
-
-    padding:
-
-        8px 12px;
-
-    border-radius: 50px;
-
-    background:
-
-        rgba(
-
-            255,
-
-            255,
-
-            255,
-
-            0.75
-
-        );
-
-    border:
-
-        1px solid
-
-        rgba(
-
-            190,
-
-            150,
-
-            160,
-
-            0.16
-
-        );
-
-    backdrop-filter:
-
-        blur(12px);
-
-    color:
-
-        var(--text-muted);
-
-    font-size: 10px;
-
-    letter-spacing: 1.5px;
-
-    opacity: 0;
-
-    transform:
-
-        translateY(5px);
-
-    transition:
-
-        0.4s ease;
-
-    pointer-events: none;
-
+section{
+  position:relative;
+  width:100%;
+  min-height:100svh;
+  padding:90px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
 
-.page-counter.show {
+.container{
+  width:min(100%,760px);
+  margin:auto;
+}
 
-    opacity: 1;
+.eyebrow{
+  margin-bottom:15px;
+  color:var(--rose-deep);
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:.24em;
+  text-transform:uppercase;
+}
 
-    transform:
+h1,
+h2{
+  color:var(--text);
+  line-height:1.16;
+  letter-spacing:-.035em;
+}
 
-        translateY(0);
+h1{
+  font-size:clamp(42px,11vw,82px);
+}
 
+h2{
+  font-size:clamp(31px,8vw,56px);
+}
+
+p{
+  line-height:1.9;
+}
+
+.muted{
+  color:var(--soft);
+}
+
+.small{
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.8;
+}
+
+.divider{
+  width:46px;
+  height:1px;
+  margin:27px 0;
+  background:var(--line);
 }
 
 /* =========================================================
-
-   BACK TO TOP
-
+   REVEAL
 ========================================================= */
 
-.back-top {
-
-    position: fixed;
-
-    right: 16px;
-
-    bottom: 58px;
-
-    width: 40px;
-
-    height: 40px;
-
-    border-radius: 50%;
-
-    border:
-
-        1px solid
-
-        rgba(
-
-            190,
-
-            150,
-
-            160,
-
-            0.18
-
-        );
-
-    background:
-
-        rgba(
-
-            255,
-
-            255,
-
-            255,
-
-            0.8
-
-        );
-
-    color:
-
-        var(--pink-dark);
-
-    display: flex;
-
-    justify-content: center;
-
-    align-items: center;
-
-    font-size: 17px;
-
-    box-shadow:
-
-        0 8px 30px
-
-        rgba(
-
-            70,
-
-            40,
-
-            50,
-
-            0.08
-
-        );
-
-    backdrop-filter:
-
-        blur(12px);
-
-    z-index: 500;
-
-    opacity: 0;
-
-    pointer-events: none;
-
-    transform:
-
-        translateY(8px);
-
-    transition:
-
-        0.3s ease;
-
+.reveal{
+  opacity:0;
+  transform:translateY(22px);
+  transition:
+    opacity .85s ease,
+    transform .85s cubic-bezier(.2,.75,.25,1);
 }
 
-.back-top.show {
-
-    opacity: 1;
-
-    pointer-events: auto;
-
-    transform:
-
-        translateY(0);
-
+.reveal.visible{
+  opacity:1;
+  transform:none;
 }
 
 /* =========================================================
-
-   GENERAL
-
-========================================================= */
-
-section {
-
-    min-height: 100vh;
-
-    padding:
-
-        90px 22px;
-
-    display: flex;
-
-    justify-content: center;
-
-    align-items: center;
-
-    text-align: center;
-
-    position: relative;
-
-    overflow: hidden;
-
-}
-
-.container {
-
-    width: 100%;
-
-    max-width: 680px;
-
-    position: relative;
-
-    z-index: 2;
-
-}
-
-.small {
-
-    margin-bottom: 20px;
-
-    color:
-
-        var(--text-muted);
-
-    font-size: 10px;
-
-    letter-spacing: 3px;
-
-    text-transform: uppercase;
-
-}
-
-h1 {
-
-    font-size:
-
-        clamp(
-
-            46px,
-
-            12vw,
-
-            82px
-
-        );
-
-    font-weight: 300;
-
-    line-height: 1.03;
-
-    letter-spacing:
-
-        -3px;
-
-}
-
-h1 span {
-
-    color:
-
-        var(--pink-dark);
-
-}
-
-h2 {
-
-    font-size:
-
-        clamp(
-
-            29px,
-
-            7vw,
-
-            39px
-
-        );
-
-    font-weight: 400;
-
-    line-height: 1.28;
-
-    letter-spacing:
-
-        -0.7px;
-
-}
-
-p {
-
-    font-size: 15.5px;
-
-    line-height: 2;
-
-    color:
-
-        var(--text-soft);
-
-}
-
-button {
-
-    border: none;
-
-    padding:
-
-        14px 27px;
-
-    border-radius: 100px;
-
-    background:
-
-        var(--pink);
-
-    color: white;
-
-    font-size: 14px;
-
-    cursor: pointer;
-
-    box-shadow:
-
-        0 10px 30px
-
-        rgba(
-
-            190,
-
-            120,
-
-            140,
-
-            0.2
-
-        );
-
-    transition:
-
-        transform 0.25s ease,
-
-        box-shadow 0.25s ease,
-
-        background 0.25s ease;
-
-}
-
-button:hover {
-
-    transform:
-
-        translateY(-3px);
-
-    box-shadow:
-
-        0 15px 35px
-
-        rgba(
-
-            190,
-
-            120,
-
-            140,
-
-            0.27
-
-        );
-
-}
-
-button:active {
-
-    transform:
-
-        scale(0.96);
-
-}
-
-.divider {
-
-    width: 42px;
-
-    height: 1px;
-
-    margin:
-
-        26px auto;
-
-    background:
-
-        var(--line);
-
-}
-
-/* =========================================================
-
    HOME
-
 ========================================================= */
 
-#home {
-
-    background:
-
-        radial-gradient(
-
-            circle at 50% 34%,
-
-            #f8dce4 0%,
-
-            #fff1f4 27%,
-
-            #fffaf7 65%
-
-        );
-
+.home{
+  min-height:100svh;
+  padding-top:70px;
+  overflow:hidden;
 }
 
-.home-content {
-
-    animation:
-
-        intro 1.2s ease both;
-
+.home-inner{
+  position:relative;
+  width:min(100%,760px);
+  text-align:center;
 }
 
-.home-subtitle {
-
-    margin-top: 24px;
-
-    color:
-
-        var(--text-soft);
-
+.home-orbit{
+  position:absolute;
+  width:300px;
+  height:300px;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-51%);
+  border:1px solid rgba(199,124,145,.14);
+  border-radius:50%;
+  pointer-events:none;
 }
 
-.home-button {
-
-    margin-top: 35px;
-
+.home-orbit::before,
+.home-orbit::after{
+  content:"";
+  position:absolute;
+  inset:23px;
+  border:1px solid rgba(199,124,145,.08);
+  border-radius:50%;
 }
 
-.home-hint {
+.home-orbit::after{
+  inset:52px;
+  border-color:rgba(202,179,216,.11);
+}
 
-    margin-top: 45px;
+.home-orbit{
+  animation:orbitBreath 7s ease-in-out infinite;
+}
 
-    color:
+@keyframes orbitBreath{
+  0%,100%{
+    transform:translate(-50%,-51%) scale(.94);
+    opacity:.65;
+  }
+  50%{
+    transform:translate(-50%,-51%) scale(1.04);
+    opacity:1;
+  }
+}
 
-        #b5a3a9;
+.home-heart{
+  position:relative;
+  width:104px;
+  height:104px;
+  margin:0 auto 35px;
+  display:grid;
+  place-items:center;
+  color:var(--rose);
+  font-size:42px;
+  z-index:2;
+}
 
-    font-size: 10px;
+.home-heart::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:50%;
+  background:
+    radial-gradient(
+      circle,
+      rgba(199,124,145,.17),
+      rgba(199,124,145,.04) 56%,
+      transparent 70%
+    );
+  animation:heartGlow 2.8s ease-in-out infinite;
+}
 
-    letter-spacing: 1.5px;
+.home-heart span{
+  position:relative;
+  display:block;
+  animation:heartBeat 2.8s ease-in-out infinite;
+  text-shadow:0 8px 25px rgba(170,96,120,.17);
+}
 
-    animation:
+@keyframes heartGlow{
+  0%,100%{
+    transform:scale(.86);
+    opacity:.65;
+  }
+  50%{
+    transform:scale(1.12);
+    opacity:1;
+  }
+}
 
-        hint 2.2s ease-in-out infinite;
+@keyframes heartBeat{
+  0%,38%,100%{
+    transform:scale(1);
+  }
+  8%{
+    transform:scale(1.13);
+  }
+  17%{
+    transform:scale(.97);
+  }
+  25%{
+    transform:scale(1.08);
+  }
+}
 
+.home h1{
+  position:relative;
+  z-index:2;
+  max-width:700px;
+  margin:0 auto;
+}
+
+.home h1 .line{
+  display:block;
+}
+
+.home h1 .soft-word{
+  color:var(--rose-deep);
+}
+
+.home-sub{
+  position:relative;
+  z-index:2;
+  max-width:530px;
+  margin:25px auto 0;
+  color:var(--soft);
+  font-size:15px;
+}
+
+.home-date{
+  position:relative;
+  z-index:2;
+  margin-top:18px;
+  color:var(--muted);
+  font-size:11px;
+  letter-spacing:.18em;
+}
+
+.start-button{
+  position:relative;
+  z-index:2;
+  margin-top:35px;
+
+  min-width:190px;
+  padding:15px 23px;
+
+  border:1px solid rgba(199,124,145,.35);
+  border-radius:999px;
+
+  color:var(--rose-deep);
+  background:rgba(255,255,255,.66);
+
+  box-shadow:
+    0 12px 35px rgba(124,87,100,.08),
+    inset 0 0 0 1px rgba(255,255,255,.5);
+
+  backdrop-filter:blur(12px);
+
+  font-size:13px;
+  font-weight:700;
+
+  transition:
+    transform .25s ease,
+    box-shadow .25s ease,
+    background .25s ease;
+}
+
+.start-button:hover{
+  transform:translateY(-3px);
+  background:rgba(255,255,255,.88);
+  box-shadow:
+    0 18px 40px rgba(124,87,100,.12);
+}
+
+.start-button:active{
+  transform:scale(.97);
+}
+
+.start-button .arrow{
+  display:inline-block;
+  margin-left:7px;
+  transition:transform .25s ease;
+}
+
+.start-button:hover .arrow{
+  transform:translateX(4px);
+}
+
+/* tiny home notes */
+
+.home-note{
+  position:relative;
+  z-index:2;
+  margin-top:27px;
+  color:#b19da5;
+  font-size:10px;
+  letter-spacing:.05em;
 }
 
 /* =========================================================
-
-   HOME DECORATION
-
+   CONTENT CARDS
 ========================================================= */
 
-.orb {
-
-    position: absolute;
-
-    border-radius: 50%;
-
-    pointer-events: none;
-
-    opacity: 0.35;
-
-    filter:
-
-        blur(1px);
-
-    animation:
-
-        floatOrb
-
-        9s
-
-        ease-in-out
-
-        infinite;
-
+.glass{
+  border:1px solid rgba(232,203,210,.75);
+  border-radius:28px;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,.78),
+      rgba(255,248,243,.66)
+    );
+  box-shadow:var(--shadow);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
 }
 
-.orb.one {
-
-    width: 110px;
-
-    height: 110px;
-
-    left: -40px;
-
-    top: 13%;
-
-    background:
-
-        #f3cad5;
-
+.soft-card{
+  padding:27px;
 }
 
-.orb.two {
-
-    width: 70px;
-
-    height: 70px;
-
-    right: -20px;
-
-    bottom: 18%;
-
-    background:
-
-        #ead5e4;
-
-    animation-delay:
-
-        -3s;
-
+.quote{
+  position:relative;
+  padding:28px 25px;
+  margin-top:30px;
+  border-left:2px solid var(--rose-light);
+  background:rgba(255,255,255,.42);
+  border-radius:0 22px 22px 0;
+  color:var(--soft);
 }
 
-.orb.three {
-
-    width: 30px;
-
-    height: 30px;
-
-    right: 15%;
-
-    top: 24%;
-
-    background:
-
-        #f1cbd6;
-
-    animation-delay:
-
-        -5s;
-
+.quote::before{
+  content:"“";
+  position:absolute;
+  left:14px;
+  top:-17px;
+  color:var(--rose-light);
+  font-family:Georgia,serif;
+  font-size:65px;
+  line-height:1;
 }
 
 /* =========================================================
-
    BEGIN
-
 ========================================================= */
 
-#begin {
-
-    background:
-
-        #ffffff;
-
+.begin-copy{
+  max-width:680px;
 }
 
-.begin-text {
-
-    margin-top: 28px;
-
+.begin-copy p{
+  margin-top:20px;
+  color:var(--soft);
+  font-size:15px;
 }
 
-.begin-text strong {
-
-    color:
-
-        var(--pink-dark);
-
-    font-weight: 600;
-
+.begin-highlight{
+  margin-top:32px;
+  padding:28px;
 }
 
-.personal-note {
-
-    margin:
-
-        28px auto 30px;
-
-    padding:
-
-        15px 18px;
-
-    max-width: 480px;
-
-    border-radius: 16px;
-
-    background:
-
-        #fff5f7;
-
-    color:
-
-        #9a707d;
-
-    font-size: 13px;
-
-    line-height: 1.8;
-
+.begin-highlight strong{
+  display:block;
+  margin-bottom:10px;
+  color:var(--rose-deep);
+  font-size:15px;
 }
 
 /* =========================================================
-
-   STORY
-
+   TIMELINE
 ========================================================= */
 
-#story {
-
-    background:
-
-        #fff4f6;
-
+.timeline{
+  margin-top:35px;
+  display:grid;
+  gap:12px;
 }
 
-.story-intro {
-
-    margin-top: 20px;
-
-    color:
-
-        #806e74;
-
-    font-size: 14px;
-
+.timeline-item{
+  overflow:hidden;
+  border:1px solid rgba(232,203,210,.7);
+  border-radius:22px;
+  background:rgba(255,255,255,.54);
+  box-shadow:var(--shadow-soft);
 }
 
-.timeline {
-
-    margin-top: 48px;
-
-    text-align: left;
-
+.timeline-head{
+  width:100%;
+  padding:19px 19px 18px;
+  display:flex;
+  align-items:center;
+  gap:15px;
+  text-align:left;
+  color:var(--text);
+  background:transparent;
 }
 
-.event {
-
-    position: relative;
-
-    padding:
-
-        0 0 48px 32px;
-
-    border-left:
-
-        1px solid
-
-        var(--line);
-
+.timeline-index{
+  flex:0 0 auto;
+  width:38px;
+  height:38px;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  background:var(--rose-soft);
+  color:var(--rose-deep);
+  font-size:11px;
+  font-weight:800;
 }
 
-.event:last-child {
-
-    border-left:
-
-        none;
-
-    padding-bottom: 0;
-
+.timeline-meta{
+  flex:1;
 }
 
-.event::before {
-
-    content:
-
-        "♡";
-
-    position: absolute;
-
-    left: -11px;
-
-    top: -3px;
-
-    width: 21px;
-
-    height: 21px;
-
-    display: flex;
-
-    justify-content: center;
-
-    align-items: center;
-
-    border-radius: 50%;
-
-    background:
-
-        #fff4f6;
-
-    color:
-
-        var(--pink-dark);
-
-    font-size: 16px;
-
+.timeline-date{
+  display:block;
+  margin-bottom:4px;
+  color:var(--muted);
+  font-size:9px;
+  font-weight:800;
+  letter-spacing:.14em;
 }
 
-.event-date {
-
-    display: block;
-
-    margin-bottom: 8px;
-
-    color:
-
-        #bd8c9a;
-
-    font-size: 9px;
-
-    letter-spacing: 2px;
-
-    text-transform: uppercase;
-
+.timeline-title{
+  display:block;
+  font-size:14px;
+  font-weight:750;
 }
 
-.event h3 {
-
-    font-size: 18px;
-
-    font-weight: 500;
-
-    color:
-
-        #504348;
-
+.timeline-plus{
+  width:27px;
+  height:27px;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  color:var(--rose);
+  background:rgba(249,232,237,.72);
+  font-size:17px;
+  transition:transform .35s ease;
 }
 
-.event p {
-
-    margin-top: 9px;
-
+.timeline-item.open .timeline-plus{
+  transform:rotate(45deg);
 }
 
-.quote-box {
+.timeline-body{
+  display:grid;
+  grid-template-rows:0fr;
+  transition:grid-template-rows .55s cubic-bezier(.2,.75,.25,1);
+}
 
-    margin-top: 18px;
+.timeline-body-inner{
+  min-height:0;
+  overflow:hidden;
+}
 
-    padding:
+.timeline-content{
+  padding:0 23px 24px 72px;
+  color:var(--soft);
+  font-size:14px;
+  line-height:1.95;
+}
 
-        18px 20px;
+.timeline-item.open .timeline-body{
+  grid-template-rows:1fr;
+}
 
-    border-left:
+.timeline-content .chat{
+  margin:13px 0;
+  padding:13px 15px;
+  border-radius:17px;
+  background:var(--cream-2);
+}
 
-        2px solid
-
-        var(--pink);
-
-    background:
-
-        rgba(
-
-            255,
-
-            255,
-
-            255,
-
-            0.5
-
-        );
-
-    color:
-
-        #87616e;
-
-    font-size: 14px;
-
-    line-height: 1.9;
-
-    font-style: italic;
-
+.chat b{
+  color:var(--rose-deep);
 }
 
 /* =========================================================
-
-   LETTER
-
+   THINKING
 ========================================================= */
 
-#feelings {
-
-    background:
-
-        #fffaf7;
-
+.thinking-card{
+  margin-top:35px;
+  padding:30px 26px;
 }
 
-.letter {
-
-    margin-top: 34px;
-
-    padding:
-
-        34px 26px;
-
-    background:
-
-        #ffffff;
-
-    border:
-
-        1px solid
-
-        rgba(
-
-            210,
-
-            170,
-
-            180,
-
-            0.13
-
-        );
-
-    border-radius:
-
-        25px;
-
-    box-shadow:
-
-        var(--shadow);
-
-    text-align: left;
-
-    position: relative;
-
+.thought-line{
+  opacity:.22;
+  transform:translateY(8px);
+  transition:
+    opacity .7s ease,
+    transform .7s ease;
 }
 
-.letter::before {
-
-    content:
-
-        "♡";
-
-    position: absolute;
-
-    top: 17px;
-
-    right: 21px;
-
-    color:
-
-        #e0b7c2;
-
-    font-size: 18px;
-
+.thinking-card.active .thought-line{
+  opacity:1;
+  transform:none;
 }
 
-.letter strong {
+.thought-line:nth-child(1){transition-delay:.05s}
+.thought-line:nth-child(2){transition-delay:.16s}
+.thought-line:nth-child(3){transition-delay:.27s}
+.thought-line:nth-child(4){transition-delay:.38s}
 
-    color:
-
-        var(--pink-dark);
-
-    font-weight: 600;
-
+.thought-line + .thought-line{
+  margin-top:15px;
 }
 
-.signature {
+.thought-line.accent{
+  color:var(--rose-deep);
+}
 
-    margin-top: 30px;
-
-    padding-top: 20px;
-
-    border-top:
-
-        1px solid
-
-        #f0e0e4;
-
-    text-align: right;
-
-    color:
-
-        #b47a8b;
-
-    font-size: 13px;
-
+.thinking-note{
+  margin-top:28px;
+  padding-top:22px;
+  border-top:1px solid var(--line);
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.95;
 }
 
 /* =========================================================
+   MINI EASTER EGG
+========================================================= */
 
+.micro-secret{
+  margin-top:25px;
+  text-align:center;
+}
+
+.micro-button{
+  padding:8px 12px;
+  border-radius:999px;
+  background:transparent;
+  color:#b69da7;
+  font-size:10px;
+  transition:all .25s ease;
+}
+
+.micro-button:hover{
+  color:var(--rose-deep);
+  background:rgba(249,232,237,.55);
+}
+
+.micro-reveal{
+  max-height:0;
+  overflow:hidden;
+  opacity:0;
+  transition:
+    max-height .55s ease,
+    opacity .4s ease;
+}
+
+.micro-reveal.show{
+  max-height:100px;
+  opacity:1;
+}
+
+.micro-reveal p{
+  margin-top:10px;
+  color:var(--soft);
+  font-size:12px;
+}
+
+/* =========================================================
+   FEELINGS / LETTER
+========================================================= */
+
+.letter{
+  margin-top:35px;
+  padding:31px 27px;
+}
+
+.letter p{
+  margin-top:18px;
+  color:var(--soft);
+  font-size:15px;
+}
+
+.letter-line{
+  display:inline;
+  border-radius:5px;
+  transition:
+    background .3s ease,
+    color .3s ease;
+  cursor:pointer;
+}
+
+.letter-line:hover{
+  color:var(--rose-deep);
+  background:rgba(249,232,237,.65);
+}
+
+.signature{
+  margin-top:30px;
+  padding-top:22px;
+  border-top:1px solid var(--line);
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.9;
+}
+
+/* =========================================================
    DISTANCE
-
 ========================================================= */
 
-#distance {
-
-    background:
-
-        linear-gradient(
-
-            145deg,
-
-            #f7f1fa,
-
-            #fff8fb
-
-        );
-
+.distance-intro{
+  max-width:650px;
 }
 
-.distance-text {
-
-    margin-top: 25px;
-
+.distance-cards{
+  margin-top:34px;
+  display:grid;
+  gap:14px;
 }
 
-.distance-card {
-
-    margin:
-
-        30px auto;
-
-    padding:
-
-        21px;
-
-    max-width: 460px;
-
-    border-radius:
-
-        20px;
-
-    background:
-
-        rgba(
-
-            255,
-
-            255,
-
-            255,
-
-            0.72
-
-        );
-
-    border:
-
-        1px solid
-
-        rgba(
-
-            190,
-
-            160,
-
-            195,
-
-            0.14
-
-        );
-
+.distance-card{
+  padding:24px;
+  transition:
+    transform .35s ease,
+    box-shadow .35s ease;
 }
 
-.distance-card span {
-
-    display: block;
-
-    margin-bottom: 7px;
-
-    color:
-
-        #a18ba4;
-
-    font-size: 9px;
-
-    letter-spacing: 2px;
-
+.distance-card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 20px 45px rgba(124,87,100,.11);
 }
 
-.distance-card strong {
+.distance-card .number{
+  color:var(--rose);
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:.18em;
+}
 
-    color:
+.distance-card h3{
+  margin:10px 0 9px;
+  font-size:17px;
+}
 
-        #756477;
+.distance-card p{
+  color:var(--soft);
+  font-size:13px;
+}
 
-    font-size: 15px;
-
-    font-weight: 500;
-
-    line-height: 1.7;
-
+.someday{
+  margin-top:25px;
+  text-align:center;
+  color:var(--rose-deep);
+  font-size:14px;
 }
 
 /* =========================================================
+   LITTLE THINGS / MEMORY CARDS
+========================================================= */
 
+.memory-grid{
+  margin-top:34px;
+  display:grid;
+  gap:13px;
+}
+
+.memory-card{
+  position:relative;
+  min-height:150px;
+  padding:23px;
+  overflow:hidden;
+  cursor:pointer;
+
+  border:1px solid rgba(232,203,210,.7);
+  border-radius:23px;
+
+  background:rgba(255,255,255,.55);
+  box-shadow:var(--shadow-soft);
+
+  transform-style:preserve-3d;
+  transition:
+    transform .2s ease,
+    box-shadow .3s ease;
+}
+
+.memory-card::after{
+  content:"♡";
+  position:absolute;
+  right:18px;
+  top:14px;
+  color:rgba(199,124,145,.14);
+  font-size:48px;
+  pointer-events:none;
+}
+
+.memory-card.active{
+  box-shadow:
+    0 20px 50px rgba(124,87,100,.12),
+    inset 0 0 0 1px rgba(199,124,145,.13);
+}
+
+.memory-number{
+  color:var(--rose);
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:.17em;
+}
+
+.memory-card h3{
+  margin:10px 0 7px;
+  font-size:16px;
+}
+
+.memory-card p{
+  color:var(--soft);
+  font-size:13px;
+}
+
+.memory-more{
+  max-height:0;
+  overflow:hidden;
+  opacity:0;
+  transition:
+    max-height .5s ease,
+    opacity .4s ease,
+    margin-top .4s ease;
+}
+
+.memory-card.active .memory-more{
+  max-height:100px;
+  opacity:1;
+  margin-top:10px;
+}
+
+/* =========================================================
    SECRET
-
 ========================================================= */
 
-#secret {
-
-    background:
-
-        radial-gradient(
-
-            circle at center,
-
-            #f8dce5,
-
-            #fffaf7 67%
-
-        );
-
+.secret-wrap{
+  text-align:center;
 }
 
-.secret-intro {
-
-    margin-top: 20px;
-
+.secret-card{
+  margin-top:32px;
+  padding:34px 25px;
 }
 
-.secret-content {
-
-    display: none;
-
-    margin-top: 30px;
-
-    animation:
-
-        reveal 1s ease both;
-
+.secret-button{
+  position:relative;
+  padding:15px 24px;
+  border-radius:999px;
+  background:var(--rose);
+  color:white;
+  box-shadow:
+    0 12px 28px rgba(170,96,120,.22);
+  font-size:13px;
+  font-weight:750;
+  transition:
+    transform .25s ease,
+    box-shadow .25s ease;
 }
 
-.secret-content.show {
-
-    display: block;
-
+.secret-button:hover{
+  transform:translateY(-3px);
+  box-shadow:0 17px 35px rgba(170,96,120,.28);
 }
 
-.secret-content strong {
-
-    color:
-
-        var(--pink-dark);
-
-    font-weight: 600;
-
+.secret-button:active{
+  transform:scale(.97);
 }
 
-#secretButton {
-
-    margin-top: 30px;
-
+.secret-content{
+  display:none;
+  margin-top:30px;
+  text-align:left;
 }
 
-#finalButton {
+.secret-content.show{
+  display:block;
+  animation:secretIn .8s cubic-bezier(.2,.75,.25,1);
+}
 
-    display: none;
+@keyframes secretIn{
+  from{
+    opacity:0;
+    transform:translateY(20px) scale(.98);
+  }
+  to{
+    opacity:1;
+    transform:none;
+  }
+}
 
-    margin-top: 30px;
+.secret-content p{
+  margin-top:17px;
+  color:var(--soft);
+  font-size:15px;
+}
 
+.secret-final{
+  color:var(--rose-deep)!important;
+  font-weight:700;
 }
 
 /* =========================================================
-
-   LITTLE THINGS
-
-========================================================= */
-
-#little-things {
-
-    background:
-
-        #fff7f9;
-
-}
-
-.little-intro {
-
-    margin-top: 20px;
-
-}
-
-.memory-grid {
-
-    margin-top: 35px;
-
-    display: grid;
-
-    grid-template-columns:
-
-        repeat(
-
-            2,
-
-            1fr
-
-        );
-
-    gap: 12px;
-
-}
-
-.memory-card {
-
-    padding:
-
-        22px 14px;
-
-    border-radius:
-
-        20px;
-
-    background:
-
-        #ffffff;
-
-    border:
-
-        1px solid
-
-        rgba(
-
-            210,
-
-            170,
-
-            180,
-
-            0.12
-
-        );
-
-    box-shadow:
-
-        0 10px 30px
-
-        rgba(
-
-            80,
-
-            50,
-
-            60,
-
-            0.05
-
-        );
-
-}
-
-.memory-icon {
-
-    margin-bottom: 9px;
-
-    color:
-
-        var(--pink-dark);
-
-    font-size: 22px;
-
-}
-
-.memory-card h3 {
-
-    color:
-
-        #705d63;
-
-    font-size: 14px;
-
-    font-weight: 500;
-
-}
-
-.memory-card p {
-
-    margin-top: 6px;
-
-    color:
-
-        #9a898e;
-
-    font-size: 11px;
-
-    line-height: 1.7;
-
-}
-
-/* =========================================================
-
    FINAL
-
 ========================================================= */
 
-#final {
-
-    min-height:
-
-        100vh;
-
-    background:
-
-        radial-gradient(
-
-            circle at 50% 40%,
-
-            #fbe5ea,
-
-            #ffffff 61%
-
-        );
-
+.final{
+  min-height:100svh;
+  overflow:hidden;
 }
 
-.final-title {
-
-    color:
-
-        var(--pink-dark);
-
-    font-size:
-
-        clamp(
-
-            43px,
-
-            11vw,
-
-            72px
-
-        );
-
-    font-weight:
-
-        300;
-
-    line-height:
-
-        1.08;
-
-    letter-spacing:
-
-        -2px;
-
+.final::before{
+  content:"";
+  position:absolute;
+  width:500px;
+  height:500px;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  border-radius:50%;
+  background:
+    radial-gradient(
+      circle,
+      rgba(239,208,217,.22),
+      rgba(238,229,244,.10) 45%,
+      transparent 70%
+    );
+  pointer-events:none;
 }
 
-.final-message {
-
-    margin-top:
-
-        25px;
-
+.final-inner{
+  position:relative;
+  width:min(100%,760px);
+  text-align:center;
+  z-index:2;
 }
 
-.final-message strong {
-
-    color:
-
-        var(--pink-dark);
-
-    font-weight:
-
-        600;
-
+.final h2{
+  max-width:650px;
+  margin:0 auto;
 }
 
-.final-heart {
-
-    margin-top:
-
-        32px;
-
-    color:
-
-        #d493a4;
-
-    font-size:
-
-        28px;
-
-    animation:
-
-        heartbeat
-
-        1.8s
-
-        ease-in-out
-
-        infinite;
-
+.final-sub{
+  margin-top:18px;
+  color:var(--soft);
+  font-size:15px;
 }
 
-.final-small {
+.counter{
+  margin:35px auto 0;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  max-width:500px;
+}
 
-    margin-top:
+.counter-box{
+  padding:18px 10px;
+  border:1px solid rgba(232,203,210,.75);
+  border-radius:20px;
+  background:rgba(255,255,255,.56);
+  box-shadow:var(--shadow-soft);
+}
 
-        42px;
+.counter-number{
+  display:block;
+  color:var(--rose-deep);
+  font-size:24px;
+  font-weight:800;
+}
 
-    color:
+.counter-label{
+  display:block;
+  margin-top:4px;
+  color:var(--muted);
+  font-size:8px;
+  font-weight:800;
+  letter-spacing:.14em;
+}
 
-        #b9a8ae;
+.final-message{
+  max-width:600px;
+  margin:38px auto 0;
+  color:var(--soft);
+  font-size:14px;
+  line-height:2;
+}
 
-    font-size:
+.final-highlight{
+  margin:30px auto 0;
+  max-width:570px;
+  padding:27px 22px;
+  border-radius:25px;
+  background:rgba(255,255,255,.54);
+  border:1px solid rgba(232,203,210,.68);
+  box-shadow:var(--shadow-soft);
+}
 
-        10px;
+.final-highlight p{
+  color:var(--soft);
+  font-size:14px;
+}
 
-    letter-spacing:
+.final-love{
+  margin-top:35px;
+}
 
-        1px;
+.love-button{
+  display:inline-grid;
+  place-items:center;
+  width:78px;
+  height:78px;
+  border-radius:50%;
+  background:
+    radial-gradient(
+      circle at 35% 30%,
+      #fff,
+      var(--rose-soft)
+    );
+  color:var(--rose-deep);
+  font-size:30px;
+  box-shadow:
+    0 15px 40px rgba(124,87,100,.12),
+    inset 0 0 0 1px rgba(199,124,145,.15);
+  transition:
+    transform .25s ease,
+    box-shadow .25s ease;
+}
 
+.love-button:hover{
+  transform:scale(1.06);
+  box-shadow:
+    0 20px 50px rgba(124,87,100,.16);
+}
+
+.love-button:active{
+  transform:scale(.93);
+}
+
+.love-text{
+  margin-top:13px;
+  color:var(--rose-deep);
+  font-size:13px;
+  font-weight:700;
+}
+
+.final-footer{
+  margin-top:45px;
+  color:var(--muted);
+  font-size:10px;
+  letter-spacing:.08em;
 }
 
 /* =========================================================
-
-   FOOTER
-
-========================================================= */
-
-footer {
-
-    padding:
-
-        32px 20px;
-
-    background:
-
-        #ffffff;
-
-    text-align:
-
-        center;
-
-    color:
-
-        #b5a7ac;
-
-    font-size:
-
-        10px;
-
-    letter-spacing:
-
-        0.7px;
-
-}
-
-/* =========================================================
-
    FLOATING HEARTS
-
 ========================================================= */
 
-.heart {
+.float-heart{
+  position:fixed;
+  left:0;
+  top:0;
+  z-index:2000;
+  pointer-events:none;
+  color:var(--rose);
+  font-size:15px;
+  animation:floatHeart 1.4s cubic-bezier(.2,.7,.25,1) forwards;
+}
 
-    position:
-
-        fixed;
-
-    bottom:
-
-        -20px;
-
-    pointer-events:
-
-        none;
-
-    z-index:
-
-        9998;
-
-    color:
-
-        #d79aaa;
-
-    animation:
-
-        floatUp
-
-        5s
-
-        linear
-
-        forwards;
-
+@keyframes floatHeart{
+  0%{
+    opacity:0;
+    transform:translate(-50%,-50%) scale(.4) rotate(0deg);
+  }
+  15%{
+    opacity:1;
+  }
+  100%{
+    opacity:0;
+    transform:
+      translate(
+        calc(-50% + var(--x)),
+        calc(-50% - var(--y))
+      )
+      scale(1)
+      rotate(var(--r));
+  }
 }
 
 /* =========================================================
-
-   ANIMATIONS
-
+   FINAL RISING PARTICLES
 ========================================================= */
 
-@keyframes intro {
-
-    from {
-
-        opacity:
-
-            0;
-
-        transform:
-
-            translateY(20px);
-
-    }
-
-    to {
-
-        opacity:
-
-            1;
-
-        transform:
-
-            translateY(0);
-
-    }
-
+.final-particle{
+  position:fixed;
+  bottom:-20px;
+  z-index:1;
+  pointer-events:none;
+  color:var(--rose);
+  opacity:0;
+  animation:rise 4s ease-out forwards;
 }
 
-@keyframes reveal {
-
-    from {
-
-        opacity:
-
-            0;
-
-        transform:
-
-            translateY(20px);
-
-    }
-
-    to {
-
-        opacity:
-
-            1;
-
-        transform:
-
-            translateY(0);
-
-    }
-
-}
-
-@keyframes floatOrb {
-
-    0%,
-
-    100% {
-
-        transform:
-
-            translate(
-
-                0,
-
-                0
-
-            );
-
-    }
-
-    50% {
-
-        transform:
-
-            translate(
-
-                15px,
-
-                -20px
-
-            );
-
-    }
-
-}
-
-@keyframes floatUp {
-
-    0% {
-
-        opacity:
-
-            0;
-
-        transform:
-
-            translateY(0)
-
-            scale(0.8);
-
-    }
-
-    20% {
-
-        opacity:
-
-            0.65;
-
-    }
-
-    100% {
-
-        opacity:
-
-            0;
-
-        transform:
-
-            translateY(-100vh)
-
-            scale(1.15);
-
-    }
-
-}
-
-@keyframes heartbeat {
-
-    0%,
-
-    100% {
-
-        transform:
-
-            scale(1);
-
-    }
-
-    50% {
-
-        transform:
-
-            scale(1.14);
-
-    }
-
-}
-
-@keyframes hint {
-
-    0%,
-
-    100% {
-
-        opacity:
-
-            0.45;
-
-        transform:
-
-            translateY(0);
-
-    }
-
-    50% {
-
-        opacity:
-
-            0.8;
-
-        transform:
-
-            translateY(4px);
-
-    }
-
+@keyframes rise{
+  0%{
+    opacity:0;
+    transform:translateY(0) scale(.5) rotate(0deg);
+  }
+  12%{
+    opacity:.55;
+  }
+  100%{
+    opacity:0;
+    transform:
+      translateY(-105vh)
+      translateX(var(--drift))
+      scale(1)
+      rotate(var(--rotate));
+  }
 }
 
 /* =========================================================
-
-   MOBILE
-
+   BACK TOP
 ========================================================= */
 
-@media (max-width: 500px) {
+.back-top{
+  position:fixed;
+  right:17px;
+  bottom:18px;
+  z-index:900;
 
-    section {
+  width:40px;
+  height:40px;
 
-        padding:
+  display:grid;
+  place-items:center;
 
-            78px 20px;
+  border:1px solid rgba(232,203,210,.8);
+  border-radius:50%;
 
-    }
+  background:rgba(255,250,247,.72);
+  color:var(--rose-deep);
 
-    h1 {
+  backdrop-filter:blur(12px);
 
-        letter-spacing:
+  opacity:0;
+  pointer-events:none;
 
-            -2.5px;
+  transform:translateY(10px);
 
-    }
+  transition:
+    opacity .3s ease,
+    transform .3s ease;
+}
 
-    p {
-
-        font-size:
-
-            15px;
-
-    }
-
-    .letter {
-
-        padding:
-
-            30px 21px;
-
-    }
-
-    .memory-grid {
-
-        gap:
-
-            9px;
-
-    }
-
-    .memory-card {
-
-        padding:
-
-            19px 10px;
-
-    }
-
-    .page-counter {
-
-        right:
-
-            12px;
-
-        bottom:
-
-            12px;
-
-    }
-
-    .back-top {
-
-        right:
-
-            12px;
-
-        bottom:
-
-            52px;
-
-    }
-
+.back-top.show{
+  opacity:1;
+  pointer-events:auto;
+  transform:none;
 }
 
 /* =========================================================
-
-   REDUCE MOTION
-
+   RESPONSIVE
 ========================================================= */
 
-@media (
+@media (min-width:700px){
 
-    prefers-reduced-motion: reduce
+  section{
+    padding:120px 30px;
+  }
 
-) {
+  .distance-cards{
+    grid-template-columns:repeat(2,1fr);
+  }
 
-    html {
+  .memory-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
 
-        scroll-behavior:
+  .letter{
+    padding:42px 40px;
+  }
 
-            auto;
-
-    }
-
-    *,
-
-    *::before,
-
-    *::after {
-
-        animation-duration:
-
-            0.01ms !important;
-
-        animation-iteration-count:
-
-            1 !important;
-
-        transition-duration:
-
-            0.01ms !important;
-
-    }
-
+  .thinking-card{
+    padding:40px;
+  }
 }
 
+@media (max-width:480px){
+
+  section{
+    padding:82px 17px;
+  }
+
+  .page-number{
+    top:14px;
+    right:13px;
+  }
+
+  .home-orbit{
+    width:270px;
+    height:270px;
+  }
+
+  .home-heart{
+    margin-bottom:28px;
+  }
+
+  .home-sub{
+    font-size:14px;
+    padding:0 12px;
+  }
+
+  .soft-card,
+  .thinking-card,
+  .letter,
+  .secret-card{
+    padding:24px 20px;
+  }
+
+  .timeline-content{
+    padding-left:20px;
+  }
+
+  .timeline-index{
+    width:34px;
+    height:34px;
+  }
+
+  .counter{
+    gap:7px;
+  }
+
+  .counter-box{
+    padding:16px 7px;
+  }
+
+  .counter-number{
+    font-size:21px;
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion:reduce){
+
+  *,
+  *::before,
+  *::after{
+    scroll-behavior:auto!important;
+    animation-duration:.01ms!important;
+    animation-iteration-count:1!important;
+    transition-duration:.01ms!important;
+  }
+
+  .reveal{
+    opacity:1;
+    transform:none;
+  }
+}
 </style>
-
 </head>
 
 <body>
 
-<!-- =====================================================
-
-     UI
-
-===================================================== -->
-
-<div
-
-    id="progress"
-
-    class="progress"
-
-></div>
-
-<div
-
-    id="pageCounter"
-
-    class="page-counter"
-
->
-
-    01 / 08
-
+<div class="background-glow" aria-hidden="true">
+  <div class="glow one"></div>
+  <div class="glow two"></div>
+  <div class="glow three"></div>
 </div>
 
-<button
+<div class="progress-wrap">
+  <div class="progress-bar" id="progressBar"></div>
+</div>
 
-    id="backTop"
+<div class="page-number" id="pageNumber">01 / 09</div>
 
-    class="back-top"
 
-    aria-label="กลับด้านบน"
+<!-- =======================================================
+     01 HOME
+======================================================= -->
 
-    onclick="goTo('home')"
-
+<section
+  class="home"
+  id="home"
+  data-page="01"
 >
 
-    ↑
+  <div class="home-inner">
 
+    <div class="home-orbit" aria-hidden="true"></div>
+
+    <div class="home-heart" aria-hidden="true">
+      <span>♡</span>
+    </div>
+
+    <div class="eyebrow reveal">
+      I MADE THIS FOR YOU
+    </div>
+
+    <h1 class="reveal">
+      <span class="line">2 months</span>
+      <span class="line soft-word">with you ♡</span>
+    </h1>
+
+    <p class="home-sub reveal">
+      ผมไม่รู้ว่าคุณจะคิดยังไงกับเว็บนี้
+      แต่ผมอยากทำให้คุณสักครั้ง
+    </p>
+
+    <div class="home-date reveal">
+      01.08.2026 — 01.10.2026
+    </div>
+
+    <button
+      class="start-button reveal"
+      id="startButton"
+      type="button"
+    >
+      ค่อยๆ ดูนะครับ
+      <span class="arrow">→</span>
+    </button>
+
+    <div class="home-note reveal">
+      ไม่ต้องรีบครับ ผมตั้งใจให้คุณค่อยๆ เปิดไปทีละอย่าง
+    </div>
+
+  </div>
+</section>
+
+
+<!-- =======================================================
+     02 BEGIN
+======================================================= -->
+
+<section
+  id="begin"
+  data-page="02"
+>
+
+  <div class="container begin-copy">
+
+    <div class="eyebrow reveal">
+      BEFORE WE BEGIN
+    </div>
+
+    <h2 class="reveal">
+      ผมก็ไม่รู้จะเริ่มยังไงเหมือนกัน
+    </h2>
+
+    <div class="divider reveal"></div>
+
+    <p class="reveal">
+      จริง ๆ ผมคิดอยู่นานว่าจะทำอะไรให้คุณดี
+    </p>
+
+    <p class="reveal">
+      ซื้อของให้คุณอย่างเดียว มันก็ดูธรรมดาไปหน่อย
+    </p>
+
+    <p class="reveal">
+      ผมเลยคิดว่า
+    </p>
+
+    <div class="glass begin-highlight reveal">
+
+      <strong>
+        ลองทำอะไรที่เป็นของผมเองให้คุณดีกว่า
+      </strong>
+
+      <p>
+        ผมไม่เคยคิดเหมือนกันว่า
+        วันหนึ่งผมจะมานั่งทำอะไรแบบนี้ให้ใครสักคน
+        แต่ตอนนี้... คุณคือคนนั้นครับ
+      </p>
+
+    </div>
+
+    <div class="quote reveal">
+
+      แล้วก็ถ้าคุณกำลังคิดว่า
+      “ทำไมเว็บมันมีอะไรให้กดเยอะจัง”
+      อันนี้ผมก็ไม่รู้เหมือนกันครับ 555
+
+      <br><br>
+
+      ผมแค่อยากให้คุณค่อยๆ เปิดมันไป
+      เหมือนกำลังเปิดอะไรที่ผมตั้งใจทำให้คุณทีละอย่าง
+
+    </div>
+
+    <p class="small reveal" style="margin-top:22px;">
+      เว็บนี้อาจไม่ได้สมบูรณ์แบบที่สุด
+      แต่ผมตั้งใจทำมันจริงๆ
+    </p>
+
+  </div>
+</section>
+
+
+<!-- =======================================================
+     03 STORY
+======================================================= -->
+
+<section
+  id="story"
+  data-page="03"
+>
+
+  <div class="container">
+
+    <div class="eyebrow reveal">
+      OUR LITTLE STORY
+    </div>
+
+    <h2 class="reveal">
+      จากคนที่ไม่รู้จักกัน
+      จนกลายเป็นคุณแฟน
+    </h2>
+
+    <p
+      class="muted reveal"
+      style="margin-top:18px;max-width:600px;"
+    >
+      ผมลองย้อนกลับไปดูแล้วรู้สึกว่า
+      จริงๆ มันเกิดขึ้นเร็วมากเหมือนกันนะ 555
+    </p>
+
+    <div class="timeline">
+
+      <!-- 01 -->
+      <article class="timeline-item reveal">
+
+        <button
+          class="timeline-head"
+          type="button"
+          aria-expanded="false"
+        >
+
+          <span class="timeline-index">01</span>
+
+          <span class="timeline-meta">
+            <span class="timeline-date">
+              01 AUGUST 2026
+            </span>
+            <span class="timeline-title">
+              จุดเริ่มต้นของเรา
+            </span>
+          </span>
+
+          <span class="timeline-plus">+</span>
+
+        </button>
+
+        <div class="timeline-body">
+
+          <div class="timeline-body-inner">
+
+            <div class="timeline-content">
+
+              <p>
+                จุดเริ่มต้นมันมาจาก TikTok จริง ๆ
+              </p>
+
+              <div class="chat">
+                <b>คุณ:</b>
+                ชอบพระบาปไหม
+              </div>
+
+              <div class="chat">
+                <b>ผม:</b>
+                บาป
+              </div>
+
+              <p>
+                เออ แล้วมันก็กลายเป็นจุดเริ่มต้น
+                ของผมกับคุณเฉย6546656
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </article>
+
+
+      <!-- 02 -->
+      <article class="timeline-item reveal">
+
+        <button
+          class="timeline-head"
+          type="button"
+          aria-expanded="false"
+        >
+
+          <span class="timeline-index">02</span>
+
+          <span class="timeline-meta">
+            <span class="timeline-date">
+              AFTER THAT
+            </span>
+            <span class="timeline-title">
+              จาก TikTok → IG
+            </span>
+          </span>
+
+          <span class="timeline-plus">+</span>
+
+        </button>
+
+        <div class="timeline-body">
+
+          <div class="timeline-body-inner">
+
+            <div class="timeline-content">
+
+              <p>
+                หลังจากนั้นก็ย้ายมาคุยกันใน IG
+              </p>
+
+              <p>
+                ตอนแรกผมก็ไม่ได้คิดอะไรขนาดนั้นนะ
+              </p>
+
+              <p>
+                คุยกับคุณแล้วสนุกดี
+                แล้วก็สบายใจแบบแปลก ๆ
+              </p>
+
+              <p>
+                รู้ตัวอีกที
+                ก็เริ่มคุยกันทุกวันแล้ว
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </article>
+
+
+      <!-- 03 -->
+      <article class="timeline-item reveal">
+
+        <button
+          class="timeline-head"
+          type="button"
+          aria-expanded="false"
+        >
+
+          <span class="timeline-index">03</span>
+
+          <span class="timeline-meta">
+            <span class="timeline-date">
+              OUR FIRST DAYS
+            </span>
+            <span class="timeline-title">
+              จากคนคุย → คนพิเศษ
+            </span>
+          </span>
+
+          <span class="timeline-plus">+</span>
+
+        </button>
+
+        <div class="timeline-body">
+
+          <div class="timeline-body-inner">
+
+            <div class="timeline-content">
+
+              <p>
+                ตอนนั้นเราคุยกันทุกวัน
+                มีเล่นเกมด้วยกันครั้งแรก
+                แล้วผมก็แอบตื่นเต้นอยู่เหมือนกัน
+              </p>
+
+              <p>
+                คุณเป็นคนน่ารัก ขี้เล่น
+                ชอบทำอะไรให้ผมอึ้ง
+                แล้วบางทีก็ชอบทำอะไรแปลก ๆ
+              </p>
+
+              <p>
+                แต่แปลกตรงที่
+                ผมกลับชอบมันนะ
+              </p>
+
+              <p>
+                ชอบที่คุณเป็นคุณ
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </article>
+
+
+      <!-- 04 -->
+      <article class="timeline-item reveal">
+
+        <button
+          class="timeline-head"
+          type="button"
+          aria-expanded="false"
+        >
+
+          <span class="timeline-index">04</span>
+
+          <span class="timeline-meta">
+            <span class="timeline-date">
+              ONE OR TWO DAYS LATER
+            </span>
+            <span class="timeline-title">
+              เรากลายเป็นแฟนกัน
+            </span>
+          </span>
+
+          <span class="timeline-plus">+</span>
+
+        </button>
+
+        <div class="timeline-body">
+
+          <div class="timeline-body-inner">
+
+            <div class="timeline-content">
+
+              <p>
+                ถ้าถามว่ามันเร็วไหม
+              </p>
+
+              <p>
+                บอกเลยว่าโครตๆ55
+              </p>
+
+              <p>
+                แต่ตอนนั้นมันก็รู้สึกว่า
+                “เออคนนี้เหมือนคู่ชีวิตเลย”
+              </p>
+
+              <p>
+                ทั้งที่เพิ่งรู้จักกันเองแท้ๆ555
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </article>
+
+
+      <!-- 05 -->
+      <article class="timeline-item reveal">
+
+        <button
+          class="timeline-head"
+          type="button"
+          aria-expanded="false"
+        >
+
+          <span class="timeline-index">05</span>
+
+          <span class="timeline-meta">
+            <span class="timeline-date">
+              FROM THE FIRST DAY
+            </span>
+            <span class="timeline-title">
+              สิ่งที่เราตกลงกัน
+            </span>
+          </span>
+
+          <span class="timeline-plus">+</span>
+
+        </button>
+
+        <div class="timeline-body">
+
+          <div class="timeline-body-inner">
+
+            <div class="timeline-content">
+
+              <p>
+                ตั้งแต่แรกเราค่อนข้างพูดกันตรงๆ
+              </p>
+
+              <p>
+                ถ้ามีอะไรที่ไม่ชอบ
+                ก็บอกกันตรงๆ
+              </p>
+
+              <p>
+                ถ้าวันหนึ่งใครไม่รักแล้ว
+                ก็ไม่ต้องฝืนกัน
+              </p>
+
+              <p>
+                ผมชอบตรงนี้นะ
+                เพราะอย่างน้อยเราก็รู้ว่า
+                เราอยากให้ความสัมพันธ์นี้อยู่บนความจริง
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </article>
+
+
+      <!-- 06 -->
+      <article class="timeline-item reveal">
+
+        <button
+          class="timeline-head"
+          type="button"
+          aria-expanded="false"
+        >
+
+          <span class="timeline-index">06</span>
+
+          <span class="timeline-meta">
+            <span class="timeline-date">
+              TWO MONTHS LATER
+            </span>
+            <span class="timeline-title">
+              เรามาถึงตรงนี้แล้ว
+            </span>
+          </span>
+
+          <span class="timeline-plus">+</span>
+
+        </button>
+
+        <div class="timeline-body">
+
+          <div class="timeline-body-inner">
+
+            <div class="timeline-content">
+
+              <p>
+                สองเดือนแล้วนะ
+              </p>
+
+              <p>
+                มีทั้งวันที่ดี วันที่คิดมาก
+                มีงอน มีเข้าใจผิด
+                แล้วก็มีวันที่กลับมาคุยกันจนเข้าใจกัน
+              </p>
+
+              <p>
+                ถ้าถามว่า
+                อยากย้อนกลับไปเป็นวันที่ยังไม่รู้จักคุณไหม
+              </p>
+
+              <p>
+                ผมคงตอบว่าไม่ครับ
+              </p>
+
+              <p>
+                เพราะการมีคุณอยู่ตรงนี้
+                มันดีกว่าการไม่มีคุณจริงๆๆ
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </article>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- =======================================================
+     04 THINKING
+======================================================= -->
+
+<section
+  id="thinking"
+  data-page="04"
+>
+
+  <div class="container">
+
+    <div class="eyebrow reveal">
+      SOMETHING YOU PROBABLY KNOW
+    </div>
+
+    <h2 class="reveal">
+      คุณน่าจะรู้อยู่แล้วว่า
+      ผมเป็นคนคิดมาก
+    </h2>
+
+    <div
+      class="glass thinking-card reveal"
+      id="thinkingCard"
+    >
+
+      <p class="thought-line">
+        บางเรื่องที่สำหรับคุณอาจเป็นเรื่องเล็ก
+      </p>
+
+      <p class="thought-line">
+        ผมอาจเอากลับไปคิดอยู่ตั้งนาน
+      </p>
+
+      <p class="thought-line">
+        บางครั้งผมก็ถามคุณเรื่องเดิม ๆ
+      </p>
+
+      <p class="thought-line accent">
+        จนตัวผมเองยังคิดเลยว่า
+        “ถามอีกแล้วผมเนี่ยจะถามไรอีกกก”
+        5555367743
+      </p>
+
+      <div class="thinking-note">
+
+        แต่ผมไม่ได้อยากทำให้คุณเหนื่อยนะครับ
+
+        <br>
+
+        ผมแค่ยังเรียนรู้ว่า
+
+        <br>
+
+        จะรักใครสักคนยังไง
+
+        <br>
+
+        โดยไม่ปล่อยให้ความคิดของตัวเอง
+        พาเรื่องเล็กๆ ไปไกลเกินจริง
+
+      </div>
+
+    </div>
+
+    <div class="micro-secret reveal">
+
+      <button
+        class="micro-button"
+        id="microButton"
+        type="button"
+      >
+        ถ้าคุณคิดว่าผมพูดมากไป กดตรงนี้
+      </button>
+
+      <div
+        class="micro-reveal"
+        id="microReveal"
+      >
+        <p>
+          ก็จริงครับ 555
+          แต่ผมอยากให้คุณอ่านให้จบจริง ๆ นะ
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- =======================================================
+     05 FEELINGS
+======================================================= -->
+
+<section
+  id="feelings"
+  data-page="05"
+>
+
+  <div class="container">
+
+    <div class="eyebrow reveal">
+      A LITTLE HONESTY
+    </div>
+
+    <h2 class="reveal">
+      มีบางอย่างที่ผมอยากบอกคุณ
+    </h2>
+
+    <div class="glass letter reveal">
+
+      <p>
+        ผมอาจไม่ได้เป็นแฟนที่ดีที่สุด
+        และบางครั้งผมก็ไม่รู้เหมือนกันว่า
+        ควรพูดหรือทำอะไรถึงจะดีที่สุด
+      </p>
+
+      <p>
+        ผมคิดมาก งอแงบ้าง
+        แล้วก็ถามอะไรซ้ำ ๆ บ้าง
+        โดยเฉพาะตอนที่ผมไม่แน่ใจ
+      </p>
+
+      <p>
+        คุณก็น่าจะรู้อยู่แล้วแหละ
+        ว่าผมจริงจังกับคุณ
+      </p>
+
+      <p>
+        ผมไม่ได้อยากให้เราต้องเป็นคู่ที่สมบูรณ์แบบ
+        หรือไม่เคยทะเลาะกันเลย
+      </p>
+
+      <p>
+        ผมแค่อยากให้เวลาเรามีอะไร
+        เราพูดกัน ฟังกัน
+        แล้วพยายามเข้าใจกัน
+      </p>
+
+      <p>
+        ผมไม่อยากสัญญาอะไรใหญ่ๆ
+        ที่ตัวผมเองยังไม่รู้ว่าจะทำได้แค่ไหน
+      </p>
+
+      <p class="letter-line" data-heart-line>
+        แต่สิ่งที่ผมรู้ตอนนี้คือ
+        ผมอยากทำให้ความสัมพันธ์นี้ดี
+        เท่าที่ผมทำได้ครับ
+      </p>
+
+      <p class="letter-line" data-heart-line>
+        แล้วถ้าวันไหนผมคิดมากเกินไป
+        ก็เตือนผมได้นะ
+        ผมอาจจะบ่นนิดหน่อย
+        แต่ผมจะฟัง
+      </p>
+
+      <div class="signature">
+        จากผม
+        <br>
+        คนที่เป็นแฟนคุณอยู่ตรงนี้ ♡
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- =======================================================
+     06 DISTANCE
+======================================================= -->
+
+<section
+  id="distance"
+  data-page="06"
+>
+
+  <div class="container">
+
+    <div class="eyebrow reveal">
+      IF YOU WERE HERE
+    </div>
+
+    <h2 class="reveal">
+      ผมอยากให้คุณอยู่ใกล้กว่านี้
+    </h2>
+
+    <p
+      class="distance-intro muted reveal"
+      style="margin-top:20px;"
+    >
+      ไม่ได้อยากทำอะไรยิ่งใหญ่เลย
+      บางทีผมก็แค่อยากเดินข้างๆ คุณ
+      นั่งอยู่ข้างกัน หรืออยู่ด้วยกันเฉยๆ
+      โดยไม่ต้องทำอะไร
+    </p>
+
+    <div class="distance-cards">
+
+      <div class="glass distance-card reveal">
+
+        <div class="number">01</div>
+
+        <h3>
+          ถ้าเราอยู่ใกล้กัน
+        </h3>
+
+        <p>
+          ผมคงอยากชวนคุณไปไหนเรื่อยเปื่อย
+          แล้วสุดท้ายก็คงไม่ได้มีอะไรเป็นพิเศษ
+        </p>
+
+      </div>
+
+
+      <div class="glass distance-card reveal">
+
+        <div class="number">02</div>
+
+        <h3>
+          แต่ตอนนี้เราไกลกัน
+        </h3>
+
+        <p>
+          เพราะงั้นสิ่งที่เราทำได้
+          ก็คือรักษาสิ่งที่เรามีตอนนี้ไว้
+        </p>
+
+      </div>
+
+    </div>
+
+    <p class="someday reveal">
+      สักวันหนึ่ง
+      ผมอยากให้คำว่า “ไกลกัน”
+      ไม่ใช่สิ่งที่ต้องพูดถึงอีก
+    </p>
+
+  </div>
+</section>
+
+
+<!-- =======================================================
+     07 LITTLE THINGS
+======================================================= -->
+
+<section
+  id="little-things"
+  data-page="07"
+>
+
+  <div class="container">
+
+    <div class="eyebrow reveal">
+      LITTLE THINGS
+    </div>
+
+    <h2 class="reveal">
+      สิ่งเล็กๆ ที่ทำให้ผมชอบคุณ
+    </h2>
+
+    <p
+      class="muted reveal"
+      style="margin-top:18px;"
+    >
+      มันไม่ใช่เรื่องยิ่งใหญ่อะไรเลย
+      บางทีมันก็เป็นแค่เรื่องเล็ก ๆ
+      ที่ทำให้ผมรู้สึกว่า
+      “เออนี่แหละคุณ”
+    </p>
+
+    <div class="memory-grid">
+
+      <article class="memory-card reveal">
+
+        <div class="memory-number">
+          01 / YOU
+        </div>
+
+        <h3>
+          ความขี้เล่นของคุณ
+        </h3>
+
+        <p>
+          บางครั้งคุณก็ทำอะไรแปลกๆ
+          จนผมไม่รู้จะพูดอะไร
+          นอกจากนั่งขำ
+        </p>
+
+        <div class="memory-more">
+          <p>
+            แล้วผมก็ชอบมันนะ
+          </p>
+        </div>
+
+      </article>
+
+
+      <article class="memory-card reveal">
+
+        <div class="memory-number">
+          02 / US
+        </div>
+
+        <h3>
+          เวลาที่เราคุยกัน
+        </h3>
+
+        <p>
+          บางครั้งมันก็ไม่ได้มีเรื่องสำคัญอะไร
+          แต่แค่ได้คุยกับคุณ
+          มันก็รู้สึกดีแล้ว
+        </p>
+
+        <div class="memory-more">
+          <p>
+            อยู่ๆ เวลาก็ผ่านไปเร็วมาก
+            แปปๆ เที่ยงคืน
+          </p>
+        </div>
+
+      </article>
+
+
+      <article class="memory-card reveal">
+
+        <div class="memory-number">
+          03 / TRY
+        </div>
+
+        <h3>
+          การที่เราปรับความเข้าใจกัน
+        </h3>
+
+        <p>
+          เราไม่ได้เข้าใจกันทุกเรื่อง
+          แต่ผมชอบที่เรายังพยายามกลับมาคุยกัน
+        </p>
+
+        <div class="memory-more">
+          <p>
+            สำหรับผม อันนี้สำคัญมาก
+          </p>
+        </div>
+
+      </article>
+
+
+      <article class="memory-card reveal">
+
+        <div class="memory-number">
+          04 / STILL
+        </div>
+
+        <h3>
+          การที่คุณยังอยู่
+        </h3>
+
+        <p>
+          สุดท้ายแล้ว
+          เรื่องที่ผมดีใจที่สุดก็คือ
+          สองเดือนผ่านไป
+          เรายังอยู่ตรงนี้
+        </p>
+
+        <div class="memory-more">
+          <p>
+            ขอบคุณนะคุณ
+          </p>
+        </div>
+
+      </article>
+
+    </div>
+
+    <p
+      class="small reveal"
+      style="text-align:center;margin-top:23px;"
+    >
+      ลองกดดูทีละอันครับ ♡
+    </p>
+
+  </div>
+</section>
+
+
+<!-- =======================================================
+     08 SECRET
+======================================================= -->
+
+<section
+  id="secret"
+  data-page="08"
+>
+
+  <div class="container secret-wrap">
+
+    <div class="eyebrow reveal">
+      ONE MORE THING
+    </div>
+
+    <h2 class="reveal">
+      จริงๆ แล้วผมมีอีกอย่าง
+    </h2>
+
+    <p
+      class="muted reveal"
+      style="margin-top:17px;"
+    >
+      อันนี้ผมอยากให้คุณกดดูเอง
+    </p>
+
+    <div class="glass secret-card reveal">
+
+      <button
+        class="secret-button"
+        id="secretButton"
+        type="button"
+      >
+        กดตรงนี้ครับ ♡
+      </button>
+
+      <div
+        class="secret-content"
+        id="secretContent"
+      >
+
+        <p>
+          ผมไม่รู้ว่าคุณจะอ่านเว็บนี้
+          แล้วรู้สึกยังไง
+        </p>
+
+        <p>
+          แต่อย่างน้อยผมอยากให้คุณรู้ว่า
+          ผมตั้งใจทำมันให้คุณจริง ๆ
+        </p>
+
+        <p>
+          ตั้งแต่ข้อความแรก
+          จนถึงตรงนี้
+        </p>
+
+        <p>
+          เพราะคุณสำคัญกับผมครับ
+        </p>
+
+        <p class="secret-final">
+          แล้วมีอย่างหนึ่งที่ผมอยากให้คุณรู้ไว้
+          <br><br>
+          ผมยังอยากมีคุณ
+          อยู่ในเรื่องราวของผมต่อไปนะ
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- =======================================================
+     09 FINAL
+======================================================= -->
+
+<section
+  class="final"
+  id="final"
+  data-page="09"
+>
+
+  <div class="final-inner">
+
+    <div class="eyebrow reveal">
+      HAPPY 2 MONTHS
+    </div>
+
+    <h2 class="reveal">
+      2 เดือนแล้วจ้าาา ♡
+    </h2>
+
+    <p class="final-sub reveal">
+      สุขสันต์ครบรอบ 2 เดือนนะครับ
+      คุณแฟน
+    </p>
+
+
+    <!-- COUNTER -->
+
+    <div class="counter reveal">
+
+      <div class="counter-box">
+
+        <span
+          class="counter-number"
+          id="daysCount"
+        >
+          00
+        </span>
+
+        <span class="counter-label">
+          DAYS
+        </span>
+
+      </div>
+
+
+      <div class="counter-box">
+
+        <span
+          class="counter-number"
+          id="monthsCount"
+        >
+          02
+        </span>
+
+        <span class="counter-label">
+          MONTHS
+        </span>
+
+      </div>
+
+
+      <div class="counter-box">
+
+        <span
+          class="counter-number"
+          id="extraDaysCount"
+        >
+          00
+        </span>
+
+        <span class="counter-label">
+          EXTRA DAYS
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <div class="final-message reveal">
+
+      ขอบคุณนะ
+      ที่เข้ามาในชีวิตผม
+
+      <br>
+
+      ขอบคุณที่คุยกับผม
+      ฟังผม
+      แล้วก็ยังอยู่ตรงนี้
+
+    </div>
+
+
+    <div class="final-highlight reveal">
+
+      <p>
+        ถ้าคุณจำอะไรจากเว็บนี้ได้สักอย่าง
+      </p>
+
+      <br>
+
+      <p>
+        ผมอยากให้เป็นว่า
+      </p>
+
+      <br>
+
+      <p>
+        มีคนหนึ่งที่คิดมากกับคุณอยู่บ้าง
+        <br>
+        งอแงบ้าง
+        <br>
+        ถามอะไรซ้ำ ๆ บ้าง
+        <br>
+        แต่ก็จริงจังกับคุณ
+        มากจริง ๆ
+      </p>
+
+    </div>
+
+
+    <div class="final-message reveal">
+
+      ผมอาจไม่ได้พูดออกมาทุกครั้ง
+      <br>
+      แต่ผมรักคุณนะ
+
+      <br><br>
+
+      ไม่ต้องเป็นความสัมพันธ์ที่สมบูรณ์แบบก็ได้
+      <br>
+      ขอแค่เราเป็นเรา
+      <br>
+      แล้วค่อยๆ เดินไปด้วยกันก็พอ
+
+      <br><br>
+
+      อยู่ด้วยกันไปอีกนาน ๆ นะครับ
+
+    </div>
+
+
+    <div class="final-love reveal">
+
+      <button
+        class="love-button"
+        id="loveButton"
+        type="button"
+        aria-label="รักนะคุณ"
+      >
+        ♡
+      </button>
+
+      <div class="love-text">
+        รักนะคุณ ♡
+      </div>
+
+    </div>
+
+
+    <div class="final-footer reveal">
+      01.08.2026 — 2 months ♡
+      <br>
+      made by your boyfriend
+    </div>
+
+  </div>
+</section>
+
+
+<button
+  class="back-top"
+  id="backTop"
+  type="button"
+  aria-label="กลับด้านบน"
+>
+  ↑
 </button>
 
-<!-- =====================================================
-
-     01 — HOME
-
-===================================================== -->
-
-<section id="home">
-
-    <div class="orb one"></div>
-
-    <div class="orb two"></div>
-
-    <div class="orb three"></div>
-
-    <div class="container home-content">
-
-        <div class="small">
-
-            I MADE THIS FOR YOU
-
-        </div>
-
-        <h1>
-
-            2 months<br>
-
-            <span>with you ♡</span>
-
-        </h1>
-
-        <div class="divider"></div>
-
-        <p class="home-subtitle">
-
-            ผมไม่รู้ว่าคุณจะคิดยังไงกับเว็บนี้<br>
-
-            แต่ผมอยากทำให้คุณสักครั้ง
-
-        </p>
-
-        <button
-
-            class="home-button"
-
-            onclick="goTo('begin')"
-
-        >
-
-            เปิดดูสิ ♡
-
-        </button>
-
-        <div class="home-hint">
-
-            ↓ ค่อย ๆ ดูนะครับ
-
-        </div>
-
-    </div>
-
-</section>
-
-<!-- =====================================================
-
-     02 — BEGIN
-
-===================================================== -->
-
-<section id="begin">
-
-    <div class="container">
-
-        <div class="small">
-
-            ก่อนอื่น
-
-        </div>
-
-        <h2>
-
-            ผมก็ไม่รู้จะเริ่มยังไงเหมือนกัน
-
-        </h2>
-
-        <p class="begin-text">
-
-            จริง ๆ ผมคิดอยู่นานว่า
-
-            จะทำอะไรให้คุณดี
-
-            <br><br>
-
-            ซื้อของให้คุณก็ยังทำไม่ได้
-
-            เพราะระยะทางที่เราอยู่กันไกล๊ไกล
-
-            <br><br>
-
-            ผมเลยคิดว่า...
-
-            <br>
-
-            <strong>
-
-                ลองทำอะไรที่เป็นของผมเอง
-
-                ให้คุณดีกว่า
-
-            </strong>
-
-            <br><br>
-
-            ผมไม่เคยคิดเหมือนกันว่า
-
-            วันหนึ่งผมจะมานั่งทำอะไรแบบนี้
-
-            ให้ใครสักคน
-
-            <br><br>
-
-            แต่ตอนนี้
-
-            คุณคือคนนั้นครับ
-
-        </p>
-
-        <div class="personal-note">
-
-            เว็บนี้อาจไม่ได้สมบูรณ์แบบที่สุด
-
-            <br>
-
-            แต่ทุกข้อความในนี้
-
-            ผมตั้งใจเลือกเองครับ
-
-        </div>
-
-        <button
-
-            onclick="goTo('story')"
-
-        >
-
-            งั้นไปต่อกัน ♡
-
-        </button>
-
-    </div>
-
-</section>
-
-<!-- =====================================================
-
-     03 — OUR STORY
-
-===================================================== -->
-
-<section id="story">
-
-    <div class="container">
-
-        <div class="small">
-
-            OUR LITTLE STORY
-
-        </div>
-
-        <h2>
-
-            เรื่องของเรา
-
-        </h2>
-
-        <p class="story-intro">
-
-            ถ้าย้อนกลับไป
-
-            ผมก็ยังรู้สึกแปลกใจอยู่เลยว่า
-
-            เรื่องของเรามาถึงตรงนี้ได้ยังไง
-
-        </p>
-
-        <div class="timeline">
-
-            <!-- EVENT 1 -->
-
-            <div class="event">
-
-                <span class="event-date">
-
-                    01 AUGUST 2026
-
-                </span>
-
-                <h3>
-
-                    จุดเริ่มต้นของเรา
-
-                </h3>
-
-                <p>
-
-                    ครั้งแรกที่ผมลองทักคุณ
-
-                    คือใน TikTok
-
-                    <br><br>
-
-                    ตอนนั้นคุณเขียนว่า
-
-                    “ชอบพระบาปไหม”
-
-                    <br><br>
-
-                    แล้วผมก็ตอบไปว่า
-
-                </p>
-
-                <div class="quote-box">
-
-                    “บาป”
-
-                </div>
-
-            </div>
-
-            <!-- EVENT 2 -->
-
-            <div class="event">
-
-                <span class="event-date">
-
-                    AFTER THAT
-
-                </span>
-
-                <h3>
-
-                    จาก TikTok มาถึงไอจี
-
-                </h3>
-
-                <p>
-
-                    ตอนนั้นคุณเคยขอไอจีผม
-
-                    เป็นครั้งแรก
-
-                    <br><br>
-
-                    ถึงตอนแรกเราจะไม่ได้ติดตามกัน
-
-                    ตั้งแต่ทันที
-
-                    แต่หลังจากมีเรื่องอื่น ๆ
-
-                    เข้ามา
-
-                    <br><br>
-
-                    ผมก็ลองคุยกับคุณดู
-
-                    <br><br>
-
-                    แล้วผมก็รู้สึกว่า...
-
-                    <br>
-
-                    <strong>
-
-                        คุยกับคุณแล้วสนุกดี
-
-                        แล้วก็สบายใจแบบแปลก ๆ
-
-                    </strong>
-
-                </p>
-
-            </div>
-
-            <!-- EVENT 3 -->
-
-            <div class="event">
-
-                <span class="event-date">
-
-                    OUR FIRST DAY
-
-                </span>
-
-                <h3>
-
-                    วันที่เราได้คุยกันจริง ๆ
-
-                </h3>
-
-                <p>
-
-                    รอบนั้นคุณก็ติดตามไอจีผมมา
-
-                    <br><br>
-
-                    แล้วหลังจากนั้น
-
-                    เราก็คุยกันทุกวัน
-
-                    <br><br>
-
-                    วันแรกที่เราเล่นเกมด้วยกัน
-
-                    ตอนแรกผมเกร็งมากนะ
-
-                    <br><br>
-
-                    แต่พอได้คุยกับคุณจริง ๆ
-
-                    ผมกลับรู้สึกว่า
-
-                    <br><br>
-
-                    คุณเป็นคนน่ารักมาก
-
-                    <br>
-
-                    ขี้เล่น
-
-                    <br>
-
-                    แล้วก็บางทีก็ชอบทำตัวแปลก ๆ
-
-                    <br><br>
-
-                    แต่แปลกตรงที่...
-
-                    <br>
-
-                    <strong>
-
-                        ผมกลับชอบมันมาก
-
-                    </strong>
-
-                </p>
-
-            </div>
-
-            <!-- EVENT 4 -->
-
-            <div class="event">
-
-                <span class="event-date">
-
-                    ONE OR TWO DAYS LATER
-
-                </span>
-
-                <h3>
-
-                    จากคนที่คุยกัน
-
-                    กลายเป็นคุณแฟน
-
-                </h3>
-
-                <p>
-
-                    เราคุยกันแค่วันสองวันเองครับ
-
-                    <br><br>
-
-                    แล้วเราก็กลายเป็นแฟนกัน
-
-                    <br><br>
-
-                    ถ้าถามว่ามันเร็วไหม
-
-                    <br>
-
-                    ก็คงเร็วมากจริง ๆ
-
-                    <br><br>
-
-                    แต่ตอนนั้นผมกลับไม่ได้รู้สึกว่า
-
-                    มันแปลกเลย
-
-                    <br><br>
-
-                    เพราะตั้งแต่ตอนนั้น
-
-                    ผมรู้สึกบางอย่างขึ้นมาแล้วว่า
-
-                </p>
-
-                <div class="quote-box">
-
-                    “เออ...คนนี้เหมือนคู่ชีวิตเลย”
-
-                </div>
-
-            </div>
-
-            <!-- EVENT 5 -->
-
-            <div class="event">
-
-                <span class="event-date">
-
-                    FROM THE FIRST DAY
-
-                </span>
-
-                <h3>
-
-                    สิ่งหนึ่งที่ผมบอกคุณตั้งแต่วันแรก
-
-                </h3>
-
-                <p>
-
-                    ผมเคยบอกคุณว่า
-
-                    <br><br>
-
-                    ถ้าไม่ชอบอะไร
-
-                    ให้บอกกันตรง ๆ
-
-                    <br><br>
-
-                    ถ้าวันหนึ่งเราไม่รักกันแล้ว
-
-                    ก็อย่าฝืน
-
-                    <br><br>
-
-                    ถ้ามีอะไรไม่สบายใจ
-
-                    ก็คุยกันตรง ๆ
-
-                    <br><br>
-
-                    เพราะผมไม่อยากให้เรา
-
-                    ต้องเดาใจกันไปเรื่อย ๆ
-
-                </p>
-
-                <div class="quote-box">
-
-                    “ถ้าไม่รักกัน
-
-                    ก็อย่าฝืนกัน
-
-                    บอกกันตรง ๆ”
-
-                </div>
-
-            </div>
-
-            <!-- EVENT 6 -->
-
-            <div class="event">
-
-                <span class="event-date">
-
-                    TWO MONTHS LATER
-
-                </span>
-
-                <h3>
-
-                    แล้ววันนี้ก็มาถึง
-
-                </h3>
-
-                <p>
-
-                    ตลอดสองเดือนที่ผ่านมา
-
-                    เราปรับความเข้าใจกันมาตลอด
-
-                    <br><br>
-
-                    อาจมีวันที่คิดมาก
-
-                    มีวันที่ไม่เข้าใจกัน
-
-                    หรือมีวันที่ต้องคุยกันเยอะหน่อย
-
-                    <br><br>
-
-                    แต่ผมดีใจมากนะ
-
-                    ที่สุดท้ายแล้ว
-
-                    เรายังมีกันอยู่ตรงนี้
-
-                    <br><br>
-
-                    เพราะถ้าถามผมตอนนี้ว่า
-
-                    <br><br>
-
-                    การมีคุณอยู่ในชีวิต
-
-                    ดีกว่าการไม่มีคุณไหม
-
-                </p>
-
-                <div class="quote-box">
-
-                    <strong>
-
-                        ดีกว่าจริง ๆ ครับ
-
-                    </strong>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-<!-- =====================================================
-
-     04 — LETTER
-
-===================================================== -->
-
-<section id="feelings">
-
-    <div class="container">
-
-        <div class="small">
-
-            SOMETHING I WANT TO SAY
-
-        </div>
-
-        <h2>
-
-            มีบางอย่างที่ผมอยากบอกคุณ
-
-        </h2>
-
-        <div class="letter">
-
-            <p>
-
-                ผมอาจไม่ได้เป็นแฟน
-
-                ที่เก่งที่สุด
-
-                <br><br>
-
-                แล้วผมก็ไม่ได้รู้เสมอว่า
-
-                ควรพูดอะไร
-
-                หรือควรทำตัวยังไง
-
-                <br><br>
-
-                บางทีผมก็คิดมาก
-
-                <br>
-
-                บางทีก็กลัวว่า
-
-                ตัวเองจะทำอะไรไม่ดีพอ
-
-                <br><br>
-
-                แล้วบางครั้งผมก็ถามคุณ
-
-                ในเรื่องเดิม ๆ
-
-                เพราะผมอยากมั่นใจ
-
-                <br><br>
-
-                แต่มีอย่างหนึ่ง
-
-                ที่ผมค่อนข้างมั่นใจนะ
-
-                <br><br>
-
-                <strong>
-
-                    ผมจริงจังกับคุณครับ
-
-                </strong>
-
-                <br><br>
-
-                ผมไม่ได้อยากให้
-
-                ความสัมพันธ์ของเรา
-
-                ต้องสมบูรณ์แบบตลอดเวลา
-
-                <br><br>
-
-                ผมแค่อยากให้
-
-                เวลามีอะไร
-
-                <br>
-
-                เราคุยกันได้
-
-                <br>
-
-                ฟังกันได้
-
-                <br>
-
-                แล้วก็ยังเลือกที่จะ
-
-                อยู่ข้าง ๆ กัน
-
-                <br><br>
-
-                ผมไม่อยากสัญญาอะไรใหญ่โต
-
-                ที่ผมยังไม่รู้ว่าจะทำได้ไหม
-
-                <br><br>
-
-                แต่ตอนนี้
-
-                <br>
-
-                ผมอยากดูแล
-
-                ความสัมพันธ์นี้ให้ดีที่สุด
-
-                <br>
-
-                เท่าที่ผมทำได้ครับ
-
-            </p>
-
-            <div class="signature">
-
-                จากผม<br>
-
-                คนที่เป็นแฟนคุณ
-
-                อยู่ตรงนี้ ♡
-
-            </div>
-
-        </div>
-
-        <br><br>
-
-        <button
-
-            onclick="goTo('distance')"
-
-        >
-
-            อ่านต่อ
-
-        </button>
-
-    </div>
-
-</section>
-
-<!-- =====================================================
-
-     05 — DISTANCE
-
-===================================================== -->
-
-<section id="distance">
-
-    <div class="container">
-
-        <div class="small">
-
-            EVEN FROM FAR AWAY
-
-        </div>
-
-        <h2>
-
-            ถึงเราจะไม่ได้อยู่ใกล้กัน
-
-        </h2>
-
-        <p class="distance-text">
-
-            บางครั้งผมก็อยากให้คุณ
-
-            อยู่ตรงนี้นะ
-
-            <br><br>
-
-            อยากมีวันที่เรา
-
-            ไม่ต้องคุยผ่านหน้าจอ
-
-            <br>
-
-            อยากเดินไปไหนด้วยกัน
-
-            <br>
-
-            อยากนั่งอยู่ข้าง ๆ กันเฉย ๆ
-
-            <br>
-
-            โดยที่ไม่ต้องทำอะไรเลยก็ได้
-
-            <br><br>
-
-            แต่ตอนนี้เรายังอยู่ไกลกัน
-
-            <br><br>
-
-            เพราะงั้นสิ่งที่ผมทำได้
-
-            ก็คงเป็นการรักษาสิ่งที่เรามี
-
-            อยู่ตอนนี้ให้มันดีไปเรื่อย ๆ
-
-            <br><br>
-
-            และผมดีใจนะ
-
-            <br>
-
-            ที่ถึงเราจะไกลกัน
-
-            <br>
-
-            คุณก็ยังทำให้ผมรู้สึกว่า
-
-            <br>
-
-            <strong>
-
-                ผมมีใครสักคนอยู่ข้าง ๆ
-
-            </strong>
-
-        </p>
-
-        <div class="distance-card">
-
-            <span>
-
-                SOMEDAY
-
-            </span>
-
-            <strong>
-
-                สักวันหนึ่ง
-
-                ผมอยากให้คำว่า “ไกลกัน”
-
-                ไม่ใช่สิ่งที่ต้องพูดถึงอีก
-
-            </strong>
-
-        </div>
-
-        <button
-
-            onclick="goTo('secret')"
-
-        >
-
-            มีอีกอย่างหนึ่ง
-
-        </button>
-
-    </div>
-
-</section>
-
-<!-- =====================================================
-
-     06 — SECRET
-
-===================================================== -->
-
-<section id="secret">
-
-    <div class="container">
-
-        <div class="small">
-
-            ONE LAST THING
-
-        </div>
-
-        <h2>
-
-            จริง ๆ แล้วผมมีอีกอย่าง
-
-        </h2>
-
-        <p class="secret-intro">
-
-            อันนี้ผมอยากให้คุณกดดูเอง
-
-        </p>
-
-        <button
-
-            id="secretButton"
-
-            onclick="revealSecret()"
-
-        >
-
-            กดดูสิ ♡
-
-        </button>
-
-        <div
-
-            id="secretContent"
-
-            class="secret-content"
-
-        >
-
-            <p>
-
-                ผมไม่รู้ว่าคุณจะอ่านเว็บนี้
-
-                แล้วรู้สึกยังไง
-
-                <br><br>
-
-                แต่อย่างน้อย
-
-                ผมอยากให้คุณรู้ว่า
-
-                <br>
-
-                ผมตั้งใจทำมันให้คุณจริง ๆ
-
-                <br><br>
-
-                ตั้งแต่ข้อความแรก
-
-                <br>
-
-                จนถึงตรงนี้
-
-                <br><br>
-
-                เพราะคุณสำคัญกับผมครับ
-
-                <br><br>
-
-                และมีอย่างหนึ่ง
-
-                ที่ผมอยากให้คุณรู้ไว้
-
-                <br><br>
-
-                <strong>
-
-                    ผมยังอยากมีคุณ
-
-                    อยู่ในเรื่องราวของผมต่อไปนะ
-
-                </strong>
-
-            </p>
-
-            <button
-
-                id="finalButton"
-
-                onclick="goTo('little-things')"
-
-            >
-
-                ยังมีอีกหน้า ♡
-
-            </button>
-
-        </div>
-
-    </div>
-
-</section>
-
-<!-- =====================================================
-
-     07 — LITTLE THINGS
-
-===================================================== -->
-
-<section id="little-things">
-
-    <div class="container">
-
-        <div class="small">
-
-            LITTLE THINGS
-
-        </div>
-
-        <h2>
-
-            สิ่งเล็ก ๆ
-
-            ที่ทำให้ผมชอบคุณ
-
-        </h2>
-
-        <p class="little-intro">
-
-            มันไม่ใช่เรื่องยิ่งใหญ่อะไรเลย
-
-            <br>
-
-            บางทีมันก็เป็นแค่เรื่องเล็ก ๆ
-
-            ที่ทำให้ผมรู้สึกว่า
-
-            <br>
-
-            “เออ...นี่แหละคุณ”
-
-        </p>
-
-        <div class="memory-grid">
-
-            <div class="memory-card">
-
-                <div class="memory-icon">
-
-                    ♡
-
-                </div>
-
-                <h3>
-
-                    ความขี้เล่นของคุณ
-
-                </h3>
-
-                <p>
-
-                    บางทีก็แปลก ๆ
-
-                    แต่ผมชอบนะ
-
-                </p>
-
-            </div>
-
-            <div class="memory-card">
-
-                <div class="memory-icon">
-
-                    ☁
-
-                </div>
-
-                <h3>
-
-                    เวลาที่เราคุยกัน
-
-                </h3>
-
-                <p>
-
-                    จากที่ตอนแรกผมเกร็ง
-
-                    กลายเป็นคนที่ผมรอคุยด้วย
-
-                </p>
-
-            </div>
-
-            <div class="memory-card">
-
-                <div class="memory-icon">
-
-                    ✦
-
-                </div>
-
-                <h3>
-
-                    การที่เราปรับความเข้าใจกัน
-
-                </h3>
-
-                <p>
-
-                    ไม่ต้องถูกกันทุกครั้ง
-
-                    แค่ยังคุยกันก็พอ
-
-                </p>
-
-            </div>
-
-            <div class="memory-card">
-
-                <div class="memory-icon">
-
-                    ♡
-
-                </div>
-
-                <h3>
-
-                    การที่คุณยังอยู่
-
-                </h3>
-
-                <p>
-
-                    เรื่องธรรมดา ๆ
-
-                    ที่สำหรับผมมีความหมาย
-
-                </p>
-
-            </div>
-
-        </div>
-
-        <br><br>
-
-        <button
-
-            onclick="goTo('final')"
-
-        >
-
-            ไปหน้าสุดท้าย ♡
-
-        </button>
-
-    </div>
-
-</section>
-
-<!-- =====================================================
-
-     08 — FINAL
-
-===================================================== -->
-
-<section id="final">
-
-    <div class="container">
-
-        <div class="small">
-
-            HAPPY 2 MONTHS
-
-        </div>
-
-        <div class="final-title">
-
-            2 เดือนแล้วนะ ♡
-
-        </div>
-
-        <div class="divider"></div>
-
-        <p class="final-message">
-
-            สุขสันต์ครบรอบ 2 เดือนนะครับ
-
-            คุณแฟน
-
-            <br><br>
-
-            ขอบคุณที่เข้ามาในชีวิตผม
-
-            <br>
-
-            ขอบคุณที่คุยกับผม
-
-            <br>
-
-            ขอบคุณที่รับฟังผม
-
-            <br>
-
-            และขอบคุณที่ยังอยู่ตรงนี้
-
-            <br><br>
-
-            ผมอาจไม่ได้พูดออกมาทุกครั้ง
-
-            <br>
-
-            แต่ผมรักคุณนะ
-
-            <br><br>
-
-            ไม่ต้องเป็นความสัมพันธ์
-
-            ที่สมบูรณ์แบบก็ได้
-
-            <br><br>
-
-            ขอแค่เราเป็นเรา
-
-            <br>
-
-            แล้วค่อย ๆ เดินไปด้วยกันก็พอ
-
-            <br><br>
-
-            อยู่ด้วยกันไปอีกนาน ๆ นะครับ
-
-            <br><br>
-
-            <strong>
-
-                รักนะคุณ ♡
-
-            </strong>
-
-        </p>
-
-        <div class="final-heart">
-
-            ♥
-
-        </div>
-
-        <div class="final-small">
-
-            01.08.2026 — ∞
-
-        </div>
-
-    </div>
-
-</section>
-
-<!-- =====================================================
-
-     FOOTER
-
-===================================================== -->
-
-<footer>
-
-    made by your boyfriend ♡
-
-</footer>
 
 <script>
-
 /* =========================================================
-
-   SECTION DATA
-
+   BASIC HELPERS
 ========================================================= */
 
-const sections = [
+const $ = (selector, parent = document) =>
+  parent.querySelector(selector);
 
-    "home",
+const $$ = (selector, parent = document) =>
+  [...parent.querySelectorAll(selector)];
 
-    "begin",
-
-    "story",
-
-    "feelings",
-
-    "distance",
-
-    "secret",
-
-    "little-things",
-
-    "final"
-
-];
 
 /* =========================================================
-
-   NAVIGATION
-
+   REVEAL ON SCROLL
 ========================================================= */
 
-function goTo(id) {
+const revealItems = $$(".reveal");
 
-    const target =
+const revealObserver = new IntersectionObserver(
+  entries => {
 
-        document.getElementById(id);
+    entries.forEach(entry => {
 
-    if (!target) {
+      if(entry.isIntersecting){
 
-        return;
+        entry.target.classList.add("visible");
 
-    }
-
-    target.scrollIntoView({
-
-        behavior: "smooth",
-
-        block: "start"
+      }
 
     });
 
-    if (
+  },
+  {
+    threshold:.12,
+    rootMargin:"0px 0px -35px 0px"
+  }
+);
 
-        id === "final"
+revealItems.forEach(item => {
+  revealObserver.observe(item);
+});
 
-    ) {
 
-        createHearts(20);
+/* =========================================================
+   START BUTTON
+========================================================= */
 
-    } else {
+const startButton = $("#startButton");
+const beginSection = $("#begin");
 
-        createHearts(5);
+startButton.addEventListener("click", () => {
+
+  heartBurst(
+    window.innerWidth / 2,
+    window.innerHeight * .62,
+    7
+  );
+
+  beginSection.scrollIntoView({
+    behavior:"smooth"
+  });
+
+});
+
+
+/* =========================================================
+   TIMELINE ACCORDION
+========================================================= */
+
+const timelineItems = $$(".timeline-item");
+
+timelineItems.forEach(item => {
+
+  const head = $(".timeline-head", item);
+
+  head.addEventListener("click", () => {
+
+    const wasOpen = item.classList.contains("open");
+
+    timelineItems.forEach(other => {
+
+      other.classList.remove("open");
+
+      const button = $(".timeline-head", other);
+
+      button.setAttribute(
+        "aria-expanded",
+        "false"
+      );
+
+    });
+
+    if(!wasOpen){
+
+      item.classList.add("open");
+
+      head.setAttribute(
+        "aria-expanded",
+        "true"
+      );
+
+      const rect = head.getBoundingClientRect();
+
+      heartBurst(
+        rect.left + rect.width / 2,
+        rect.top + rect.height / 2,
+        4
+      );
 
     }
 
-}
+  });
+
+});
+
 
 /* =========================================================
+   THINKING ACTIVATION
+========================================================= */
 
+const thinkingCard = $("#thinkingCard");
+
+const thinkingObserver = new IntersectionObserver(
+  entries => {
+
+    entries.forEach(entry => {
+
+      if(entry.isIntersecting){
+        thinkingCard.classList.add("active");
+      }
+
+    });
+
+  },
+  {
+    threshold:.3
+  }
+);
+
+thinkingObserver.observe(thinkingCard);
+
+
+/* =========================================================
+   MICRO SECRET
+========================================================= */
+
+const microButton = $("#microButton");
+const microReveal = $("#microReveal");
+
+microButton.addEventListener("click", () => {
+
+  microReveal.classList.toggle("show");
+
+  if(microReveal.classList.contains("show")){
+
+    microButton.textContent =
+      "ผมเตือนไว้แล้วนะ 555";
+
+    heartBurst(
+      window.innerWidth / 2,
+      microButton.getBoundingClientRect().top,
+      3
+    );
+
+  }else{
+
+    microButton.textContent =
+      "ถ้าคุณคิดว่าผมพูดมากไป กดตรงนี้";
+
+  }
+
+});
+
+
+/* =========================================================
+   LETTER MICRO INTERACTION
+========================================================= */
+
+$$("[data-heart-line]").forEach(line => {
+
+  line.addEventListener("click", event => {
+
+    const rect = line.getBoundingClientRect();
+
+    heartBurst(
+      rect.left + rect.width / 2,
+      rect.top + rect.height / 2,
+      3
+    );
+
+  });
+
+});
+
+
+/* =========================================================
+   MEMORY CARDS
+========================================================= */
+
+const memoryCards = $$(".memory-card");
+
+memoryCards.forEach(card => {
+
+  card.addEventListener("click", () => {
+
+    const alreadyActive =
+      card.classList.contains("active");
+
+    memoryCards.forEach(other => {
+      other.classList.remove("active");
+    });
+
+    if(!alreadyActive){
+
+      card.classList.add("active");
+
+      const rect =
+        card.getBoundingClientRect();
+
+      heartBurst(
+        rect.left + rect.width * .82,
+        rect.top + 28,
+        3
+      );
+
+    }
+
+  });
+
+});
+
+
+/* =========================================================
+   SUBTLE POINTER TILT
+   Desktop only
+========================================================= */
+
+const canHover =
+  window.matchMedia("(hover:hover)").matches;
+
+if(canHover){
+
+  memoryCards.forEach(card => {
+
+    card.addEventListener("pointermove", event => {
+
+      if(card.classList.contains("active")) return;
+
+      const rect =
+        card.getBoundingClientRect();
+
+      const x =
+        (event.clientX - rect.left) / rect.width - .5;
+
+      const y =
+        (event.clientY - rect.top) / rect.height - .5;
+
+      const rotateX =
+        y * -3;
+
+      const rotateY =
+        x * 3;
+
+      card.style.transform =
+        `perspective(700px)
+         rotateX(${rotateX}deg)
+         rotateY(${rotateY}deg)
+         translateY(-2px)`;
+
+    });
+
+    card.addEventListener("pointerleave", () => {
+
+      card.style.transform = "";
+
+    });
+
+  });
+
+}
+
+
+/* =========================================================
    SECRET REVEAL
-
 ========================================================= */
 
-let secretOpened = false;
+const secretButton = $("#secretButton");
+const secretContent = $("#secretContent");
 
-function revealSecret() {
+secretButton.addEventListener("click", () => {
 
-    if (secretOpened) {
+  const opening =
+    !secretContent.classList.contains("show");
 
-        return;
+  secretContent.classList.toggle("show");
 
-    }
+  if(opening){
 
-    secretOpened = true;
+    secretButton.textContent =
+      "เปิดแล้วครับ ♡";
 
-    const button =
-
-        document.getElementById(
-
-            "secretButton"
-
-        );
-
-    const content =
-
-        document.getElementById(
-
-            "secretContent"
-
-        );
-
-    const finalButton =
-
-        document.getElementById(
-
-            "finalButton"
-
-        );
-
-    button.style.display =
-
-        "none";
-
-    content.classList.add(
-
-        "show"
-
+    heartBurst(
+      window.innerWidth / 2,
+      window.innerHeight * .47,
+      14
     );
 
-    finalButton.style.display =
+    setTimeout(() => {
 
-        "inline-block";
+      secretContent.scrollIntoView({
+        behavior:"smooth",
+        block:"center"
+      });
 
-    createHearts(25);
+    },120);
+
+  }else{
+
+    secretButton.textContent =
+      "กดตรงนี้ครับ ♡";
+
+  }
+
+});
+
+
+/* =========================================================
+   RELATIONSHIP COUNTER
+========================================================= */
+
+const startDate =
+  new Date("2026-08-01T00:00:00");
+
+function daysInMonth(year, month){
+
+  return new Date(
+    year,
+    month + 1,
+    0
+  ).getDate();
 
 }
 
-/* =========================================================
+function calculateRelationship(){
 
-   HEARTS
+  const now = new Date();
 
-========================================================= */
+  let years =
+    now.getFullYear() -
+    startDate.getFullYear();
 
-function createHearts(amount) {
+  let months =
+    now.getMonth() -
+    startDate.getMonth();
 
-    for (
+  let days =
+    now.getDate() -
+    startDate.getDate();
 
-        let i = 0;
+  if(days < 0){
 
-        i < amount;
+    months--;
 
-        i++
+    const previousMonth =
+      new Date(
+        now.getFullYear(),
+        now.getMonth(),
+        0
+      );
 
-    ) {
+    days +=
+      previousMonth.getDate();
 
-        const heart =
+  }
 
-            document.createElement(
+  if(months < 0){
 
-                "div"
+    years--;
+    months += 12;
 
-            );
+  }
 
-        heart.className =
+  const totalDays =
+    Math.floor(
+      (
+        now.getTime() -
+        startDate.getTime()
+      ) /
+      (1000 * 60 * 60 * 24)
+    );
 
-            "heart";
+  $("#daysCount").textContent =
+    String(totalDays).padStart(2,"0");
 
-        heart.innerHTML =
+  $("#monthsCount").textContent =
+    String(months + years * 12).padStart(2,"0");
 
-            Math.random() > 0.45
-
-                ? "♡"
-
-                : "♥";
-
-        heart.style.left =
-
-            Math.random() * 100
-
-            + "vw";
-
-        heart.style.fontSize =
-
-            (
-
-                11 +
-
-                Math.random() * 17
-
-            )
-
-            + "px";
-
-        heart.style.animationDuration =
-
-            (
-
-                3 +
-
-                Math.random() * 3
-
-            )
-
-            + "s";
-
-        heart.style.animationDelay =
-
-            (
-
-                Math.random() * 0.8
-
-            )
-
-            + "s";
-
-        document.body.appendChild(
-
-            heart
-
-        );
-
-        setTimeout(
-
-            () => {
-
-                heart.remove();
-
-            },
-
-            7000
-
-        );
-
-    }
+  $("#extraDaysCount").textContent =
+    String(days).padStart(2,"0");
 
 }
 
-/* =========================================================
-
-   PAGE OBSERVER
-
-========================================================= */
-
-const pageCounter =
-
-    document.getElementById(
-
-        "pageCounter"
-
-    );
-
-const observer =
-
-    new IntersectionObserver(
-
-        entries => {
-
-            entries.forEach(
-
-                entry => {
-
-                    if (
-
-                        entry.isIntersecting
-
-                    ) {
-
-                        const index =
-
-                            sections.indexOf(
-
-                                entry.target.id
-
-                            );
-
-                        if (
-
-                            index === -1
-
-                        ) {
-
-                            return;
-
-                        }
-
-                        pageCounter.textContent =
-
-                            String(
-
-                                index + 1
-
-                            ).padStart(
-
-                                2,
-
-                                "0"
-
-                            )
-
-                            +
-
-                            " / "
-
-                            +
-
-                            String(
-
-                                sections.length
-
-                            ).padStart(
-
-                                2,
-
-                                "0"
-
-                            );
-
-                        pageCounter.classList
-
-                            .add(
-
-                                "show"
-
-                            );
-
-                    }
-
-                });
-
-        },
-
-        {
-
-            threshold:
-
-                0.45
-
-        }
-
-    );
-
-sections.forEach(
-
-    id => {
-
-        const section =
-
-            document.getElementById(
-
-                id
-
-            );
-
-        if (section) {
-
-            observer.observe(
-
-                section
-
-            );
-
-        }
-
-    }
-
-);
-
-/* =========================================================
-
-   SCROLL PROGRESS
-
-========================================================= */
-
-const progress =
-
-    document.getElementById(
-
-        "progress"
-
-    );
-
-const backTop =
-
-    document.getElementById(
-
-        "backTop"
-
-    );
-
-window.addEventListener(
-
-    "scroll",
-
-    () => {
-
-        const scrollTop =
-
-            window.scrollY;
-
-        const totalHeight =
-
-            document.documentElement
-
-                .scrollHeight
-
-            -
-
-            window.innerHeight;
-
-        const percentage =
-
-            totalHeight > 0
-
-                ?
-
-                (
-
-                    scrollTop /
-
-                    totalHeight
-
-                ) * 100
-
-                :
-
-                0;
-
-        progress.style.width =
-
-            percentage + "%";
-
-        if (
-
-            scrollTop > 500
-
-        ) {
-
-            backTop.classList.add(
-
-                "show"
-
-            );
-
-        } else {
-
-            backTop.classList.remove(
-
-                "show"
-
-            );
-
-        }
-
-    },
-
-    {
-
-        passive: true
-
-    }
-
-);
-
-/* =========================================================
-
-   VERY LIGHT AMBIENT HEARTS
-
-========================================================= */
+calculateRelationship();
 
 setInterval(
+  calculateRelationship,
+  60 * 60 * 1000
+);
 
-    () => {
 
-        if (
+/* =========================================================
+   HEART BURST
+========================================================= */
 
-            Math.random() < 0.45
+function heartBurst(x, y, amount = 5){
 
-        ) {
+  const symbols = [
+    "♡",
+    "♡",
+    "✦",
+    "·"
+  ];
 
-            createHearts(1);
+  for(let i = 0; i < amount; i++){
+
+    const heart =
+      document.createElement("span");
+
+    heart.className = "float-heart";
+
+    heart.textContent =
+      symbols[
+        Math.floor(
+          Math.random() * symbols.length
+        )
+      ];
+
+    heart.style.left = `${x}px`;
+    heart.style.top = `${y}px`;
+
+    heart.style.setProperty(
+      "--x",
+      `${(Math.random() - .5) * 100}px`
+    );
+
+    heart.style.setProperty(
+      "--y",
+      `${45 + Math.random() * 75}px`
+    );
+
+    heart.style.setProperty(
+      "--r",
+      `${(Math.random() - .5) * 50}deg`
+    );
+
+    heart.style.fontSize =
+      `${10 + Math.random() * 10}px`;
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+      heart.remove();
+    },1500);
+
+  }
+
+}
+
+
+/* =========================================================
+   FINAL LOVE BUTTON
+========================================================= */
+
+const loveButton = $("#loveButton");
+
+let loveClicked = false;
+
+loveButton.addEventListener("click", () => {
+
+  heartBurst(
+    window.innerWidth / 2,
+    window.innerHeight * .72,
+    18
+  );
+
+  if(!loveClicked){
+
+    loveClicked = true;
+
+    const text =
+      document.createElement("div");
+
+    text.textContent =
+      "โอเคครับ อันนี้ให้คุณคนเดียว";
+
+    Object.assign(text.style,{
+
+      position:"fixed",
+      left:"50%",
+      top:"50%",
+      transform:"translate(-50%,-50%)",
+      zIndex:"2100",
+      padding:"13px 18px",
+      borderRadius:"999px",
+      background:"rgba(255,250,247,.9)",
+      border:"1px solid rgba(232,203,210,.9)",
+      color:"#aa6078",
+      fontSize:"12px",
+      fontWeight:"700",
+      boxShadow:"0 15px 45px rgba(124,87,100,.14)",
+      backdropFilter:"blur(14px)",
+      pointerEvents:"none",
+      whiteSpace:"nowrap",
+      opacity:"0",
+      transition:"opacity .35s ease"
+
+    });
+
+    document.body.appendChild(text);
+
+    requestAnimationFrame(() => {
+      text.style.opacity = "1";
+    });
+
+    setTimeout(() => {
+
+      text.style.opacity = "0";
+
+      setTimeout(() => {
+        text.remove();
+      },400);
+
+    },1600);
+
+  }
+
+  createFinalParticles(14);
+
+});
+
+
+/* =========================================================
+   FINAL PARTICLES
+========================================================= */
+
+function createFinalParticles(amount = 8){
+
+  const symbols = [
+    "♡",
+    "✦",
+    "·"
+  ];
+
+  for(let i = 0; i < amount; i++){
+
+    const particle =
+      document.createElement("span");
+
+    particle.className =
+      "final-particle";
+
+    particle.textContent =
+      symbols[
+        Math.floor(
+          Math.random() * symbols.length
+        )
+      ];
+
+    particle.style.left =
+      `${Math.random() * 100}%`;
+
+    particle.style.fontSize =
+      `${9 + Math.random() * 12}px`;
+
+    particle.style.setProperty(
+      "--drift",
+      `${(Math.random() - .5) * 120}px`
+    );
+
+    particle.style.setProperty(
+      "--rotate",
+      `${(Math.random() - .5) * 70}deg`
+    );
+
+    particle.style.animationDelay =
+      `${Math.random() * .7}s`;
+
+    document.body.appendChild(particle);
+
+    setTimeout(() => {
+      particle.remove();
+    },5000);
+
+  }
+
+}
+
+
+/* =========================================================
+   FINAL SECTION PARTICLES ONCE
+========================================================= */
+
+let finalShown = false;
+
+const finalSection = $("#final");
+
+const finalObserver = new IntersectionObserver(
+  entries => {
+
+    entries.forEach(entry => {
+
+      if(entry.isIntersecting && !finalShown){
+
+        finalShown = true;
+
+        setTimeout(() => {
+          createFinalParticles(10);
+        },500);
+
+      }
+
+    });
+
+  },
+  {
+    threshold:.25
+  }
+);
+
+finalObserver.observe(finalSection);
+
+
+/* =========================================================
+   PROGRESS + PAGE NUMBER
+========================================================= */
+
+const progressBar = $("#progressBar");
+const pageNumber = $("#pageNumber");
+
+const pages =
+  $$("section[data-page]");
+
+function updateProgress(){
+
+  const scrollTop =
+    window.scrollY;
+
+  const documentHeight =
+    document.documentElement.scrollHeight -
+    window.innerHeight;
+
+  const percent =
+    documentHeight > 0
+      ? (scrollTop / documentHeight) * 100
+      : 0;
+
+  progressBar.style.width =
+    `${Math.min(100, Math.max(0, percent))}%`;
+
+}
+
+const pageObserver =
+  new IntersectionObserver(
+    entries => {
+
+      entries.forEach(entry => {
+
+        if(entry.isIntersecting){
+
+          const page =
+            entry.target.dataset.page;
+
+          pageNumber.textContent =
+            `${page} / 09`;
 
         }
 
+      });
+
     },
+    {
+      threshold:.45
+    }
+  );
 
-    5500
+pages.forEach(page => {
+  pageObserver.observe(page);
+});
 
+window.addEventListener(
+  "scroll",
+  updateProgress,
+  {passive:true}
 );
 
+updateProgress();
+
+
+/* =========================================================
+   BACK TO TOP
+========================================================= */
+
+const backTop = $("#backTop");
+
+window.addEventListener(
+  "scroll",
+  () => {
+
+    if(window.scrollY > window.innerHeight * .7){
+
+      backTop.classList.add("show");
+
+    }else{
+
+      backTop.classList.remove("show");
+
+    }
+
+  },
+  {passive:true}
+);
+
+backTop.addEventListener("click", () => {
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+});
+
+
+/* =========================================================
+   ESCAPE = CLOSE INTERACTIONS
+========================================================= */
+
+document.addEventListener(
+  "keydown",
+  event => {
+
+    if(event.key !== "Escape") return;
+
+    timelineItems.forEach(item => {
+
+      item.classList.remove("open");
+
+      $(".timeline-head", item)
+        .setAttribute(
+          "aria-expanded",
+          "false"
+        );
+
+    });
+
+    memoryCards.forEach(card => {
+      card.classList.remove("active");
+    });
+
+  }
+);
+
+
+/* =========================================================
+   INITIAL LITTLE MOMENT
+========================================================= */
+
+window.addEventListener("load", () => {
+
+  setTimeout(() => {
+
+    heartBurst(
+      window.innerWidth / 2,
+      window.innerHeight * .39,
+      4
+    );
+
+  },1200);
+
+});
 </script>
 
 </body>
-
 </html>
